@@ -136,10 +136,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>2.1.5.RELEASE</version>
-                <configuration>
-                    <mainClass>com.thd.processmanagementserver.Application</mainClass>
-                </configuration>
                 <executions>
                     <execution>
                         <goals>
