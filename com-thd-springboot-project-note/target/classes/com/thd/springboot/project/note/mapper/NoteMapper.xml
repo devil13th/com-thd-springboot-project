@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thd.springboot.project.note.mapper.NoteMapper">
+		<!-- Result Map -->
+    	<resultMap id="ResultMap" type="com.thd.springboot.project.note.entity.NoteEntity">
+    		<result column="note_id" property="noteId" />
+    		<result column="classify" property="classify" />
+    		<result column="title" property="title" />
+    		<result column="content" property="content" />
+    		<result column="expire_date" property="expireDate" />
+    		<result column="alarm_days" property="alarmDays" />
+    		<result column="create_by" property="createBy" />
+    		<result column="create_time" property="createTime" />
+    		<result column="modify_by" property="modifyBy" />
+    		<result column="modify_time" property="modifyTime" />
+    		<result column="is_deleted" property="isDeleted" />
+    	</resultMap>
+
+    <!-- 表名 -->
+    <sql id="table_name">
+            note
+    </sql>
+
+	<!-- 所有字段 -->
+	<sql id="column_list">
+        note.`note_id`, <!-- 0  -->
+        note.`classify`, <!-- 1  -->
+        note.`title`, <!-- 2  -->
+        note.`content`, <!-- 3  -->
+        note.`expire_date`, <!-- 4  -->
+        note.`alarm_days`, <!-- 5  -->
+        note.`create_by`, <!-- 6  -->
+        note.`create_time`, <!-- 7  -->
+        note.`modify_by`, <!-- 8  -->
+        note.`modify_time`, <!-- 9  -->
+        note.`is_deleted` <!-- 10  -->
+	</sql>
+
+	<!-- 查询条件 -->
+	<sql id="where_eq">
+		where is_deleted = 0
+
+
+         <if test="noteId != null and noteId != '' ">
+             and note.`note_id` = #{noteId}
+         </if>
+
+
+
+
+            <if test="classify != null and classify != '' ">
+                and note.`classify` = #{classify}
+            </if>
+            <if test="title != null and title != '' ">
+                and note.`title` = #{title}
+            </if>
+            <if test="content != null and content != '' ">
+                and note.`content` = #{content}
+            </if>
+            <if test="expireDate != null ">
+                and note.`expire_date` = #{expireDate}
+            </if>
+            <if test="alarmDays != null ">
+                and note.`alarm_days` = #{alarmDays}
+            </if>
+	</sql>
+
+	<!-- like查询条件 -->
+	<sql id="where_like">
+		where is_deleted = 0
+
+
+
+
+                 <if test="noteId != null and noteId != '' ">
+                     and note.`note_id` like concat('%',#{noteId},'%')
+                 </if>
+
+
+
+
+            <if test="classify != null and classify != '' ">
+                and note.`classify` like concat('%',#{classify},'%')
+            </if>
+            <if test="title != null and title != '' ">
+                and note.`title` like concat('%',#{title},'%')
+            </if>
+            <if test="content != null and content != '' ">
+                and note.`content` like concat('%',#{content},'%')
+            </if>
+            <if test="expireDate != null ">
+                and note.`expire_date` = #{expireDate}
+            </if>
+            <if test="alarmDays != null ">
+                and note.`alarm_days` = #{alarmDays}
+            </if>
+	</sql>
+
+	<!-- 插入记录 -->
+	<insert id="insert" parameterType="com.thd.springboot.project.note.entity.NoteEntity">
+	    insert into <include refid="table_name"/> (
+	    `note_id`,
+            `classify`,
+            `title`,
+            `content`,
+            `expire_date`,
+            `alarm_days`,
+            `create_by`,
+            `create_time`,
+            `modify_by`,
+            `modify_time`,
+            `is_deleted`
+        )
+        values(
+        #{noteId},
+            #{classify},
+            #{title},
+            #{content},
+            #{expireDate},
+            #{alarmDays},
+            #{createBy},
+            #{createTime},
+            #{modifyBy},
+            #{modifyTime},
+            #{isDeleted}
+        )
+	</insert>
+
+	<!-- 根据id，修改记录 -->
+	<update id="update" parameterType="com.thd.springboot.project.note.entity.NoteEntity">
+		update <include refid="table_name"/> set
+	    <trim  suffixOverrides="," >
+            <if test="noteId != null ">
+                `note_id`=#{noteId},
+            </if>
+            <if test="classify != null ">
+                `classify`=#{classify},
+            </if>
+            <if test="title != null ">
+                `title`=#{title},
+            </if>
+            <if test="content != null ">
+                `content`=#{content},
+            </if>
+            <if test="expireDate != null ">
+                `expire_date`=#{expireDate},
+            </if>
+            <if test="alarmDays != null ">
+                `alarm_days`=#{alarmDays},
+            </if>
+            <if test="createBy != null ">
+                `create_by`=#{createBy},
+            </if>
+            <if test="createTime != null ">
+                `create_time`=#{createTime},
+            </if>
+            <if test="modifyBy != null ">
+                `modify_by`=#{modifyBy},
+            </if>
+            <if test="modifyTime != null ">
+                `modify_time`=#{modifyTime},
+            </if>
+            <if test="isDeleted != null ">
+                `is_deleted`=#{isDeleted},
+            </if>
+        </trim>
+        where `note_id`=#{noteId}
+	</update>
+
+    <!-- 批量修改记录 -->
+    <update id="updateBatch" >
+        update <include refid="table_name"/> set
+        <trim  suffixOverrides="," >
+            <if test="targetBean.classify != null ">
+                `classify`=#{targetBean.classify},
+            </if>
+            <if test="targetBean.title != null ">
+                `title`=#{targetBean.title},
+            </if>
+            <if test="targetBean.content != null ">
+                `content`=#{targetBean.content},
+            </if>
+            <if test="targetBean.expireDate != null ">
+                `expire_date`=#{targetBean.expireDate},
+            </if>
+            <if test="targetBean.alarmDays != null ">
+                `alarm_days`=#{targetBean.alarmDays},
+            </if>
+            <if test="targetBean.createBy != null ">
+                `create_by`=#{targetBean.createBy},
+            </if>
+            <if test="targetBean.createTime != null ">
+                `create_time`=#{targetBean.createTime},
+            </if>
+            <if test="targetBean.modifyBy != null ">
+                `modify_by`=#{targetBean.modifyBy},
+            </if>
+            <if test="targetBean.modifyTime != null ">
+                `modify_time`=#{targetBean.modifyTime},
+            </if>
+            <if test="targetBean.isDeleted != null ">
+                `is_deleted`=#{targetBean.isDeleted},
+            </if>
+        </trim>
+        where
+        is_deleted = 0
+        <if test="conditionBean.classify != null ">
+            and `classify`=#{conditionBean.classify}
+        </if>
+        <if test="conditionBean.title != null ">
+            and `title`=#{conditionBean.title}
+        </if>
+        <if test="conditionBean.content != null ">
+            and `content`=#{conditionBean.content}
+        </if>
+        <if test="conditionBean.expireDate != null ">
+            and `expire_date`=#{conditionBean.expireDate}
+        </if>
+        <if test="conditionBean.alarmDays != null ">
+            and `alarm_days`=#{conditionBean.alarmDays}
+        </if>
+        <if test="conditionBean.createBy != null ">
+            and `create_by`=#{conditionBean.createBy}
+        </if>
+        <if test="conditionBean.createTime != null ">
+            and `create_time`=#{conditionBean.createTime}
+        </if>
+        <if test="conditionBean.modifyBy != null ">
+            and `modify_by`=#{conditionBean.modifyBy}
+        </if>
+        <if test="conditionBean.modifyTime != null ">
+            and `modify_time`=#{conditionBean.modifyTime}
+        </if>
+        <if test="conditionBean.isDeleted != null ">
+            and `is_deleted`=#{conditionBean.isDeleted}
+        </if>
+    </update>
+
+	<delete id="deletePhysics" parameterType="String">
+        delete from <include refid="table_name"/> where `note_id` = #{noteId}
+    </delete>
+
+    <update id="deleteLogic" parameterType="String">
+        update <include refid="table_name"/> set is_deleted=1 where `note_id` = #{noteId}
+    </update>
+
+    <update id="deleteLogicByCondition" parameterType="String">
+        update <include refid="table_name"/> set is_deleted=1
+        <include refid="where_eq" />
+    </update>
+
+    <update id="deleteLogicByIds" parameterType="String">
+        update <include refid="table_name"/> set is_deleted=1
+        where
+        `note_id` in (
+        <foreach collection="ids" item="r" index="index" separator=",">
+            #{r}
+        </foreach>
+        )
+    </update>
+
+
+
+
+
+	<!-- 根据id查询 -->
+	<select id="queryById" resultMap="ResultMap" parameterType="String">
+		select <include refid="column_list" /> from <include refid="table_name"/> where is_deleted=0 and `note_id` = #{noteId}
+	</select>
+
+    <!-- 根据条件查询唯一一条数据 -->
+    <select id="queryByCondition" resultMap="ResultMap" parameterType="com.thd.springboot.project.note.entity.NoteEntity">
+        select
+        <include refid="column_list" />
+        from
+        <include refid="table_name" />
+        <include refid="where_eq" />
+    </select>
+
+	<!-- 查询列表 -->
+	<select id="queryListEq" resultMap="ResultMap"
+		parameterType="com.thd.springboot.project.note.entity.NoteEntity">
+		select
+        <include refid="column_list" />
+        from <include refid="table_name"/>
+        <include refid="where_eq" />
+         <!--
+        <if test="orderBy != null and orderBy != ''">
+         order by #{orderBy}
+        </if>
+        -->
+	</select>
+
+	<!-- 查询列表 -->
+	<select id="queryListLike" resultMap="ResultMap"
+		parameterType="com.thd.springboot.project.note.entity.NoteEntity">
+		select
+        <include refid="column_list" />
+        from <include refid="table_name"/>
+        <include refid="where_like" />
+        <!--
+        <if test="orderBy != null and orderBy != ''">
+         order by  #{orderBy}
+        </if>
+        -->
+	</select>
+
+    <!-- 查询列表 返回map-->
+    <select id="queryAllToMapKey" resultType="com.thd.springboot.project.note.entity.NoteEntity">
+        select
+        <include refid="column_list" />
+        from
+        <include refid="table_name"/>
+        <include refid="where_eq" />
+    </select>
+
+    <insert id="insertBatch" >
+        insert into <include refid="table_name"/>
+        (
+	    note_id,
+           classify,
+           title,
+           content,
+           expire_date,
+           alarm_days,
+           create_by,
+           create_time,
+           modify_by,
+           modify_time,
+           is_deleted
+        )
+        values
+        <foreach collection="list" item="r" index="index" separator=",">
+            (
+		#{r.noteId},
+                #{r.classify},
+                #{r.title},
+                #{r.content},
+                #{r.expireDate},
+                #{r.alarmDays},
+                #{r.createBy},
+                #{r.createTime},
+                #{r.modifyBy},
+                #{r.modifyTime},
+                #{r.isDeleted}
+            )
+        </foreach>
+    </insert>
+</mapper>
+

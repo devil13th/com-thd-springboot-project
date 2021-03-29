@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thd.processmanagementserver.dao.ProcessMapper">
+
+
+    <select id="queryProcessDef" resultType="com.thd.processmanagementserver.entity.ProcDefEntity">
+        select
+            def.ID_ as procDefId,
+            def.REV_ as rev,
+            def.CATEGORY_ as category,
+            def.NAME_ as defName,
+            def.KEY_ as defKey,
+            def.VERSION_ as defVersion,
+            def.DEPLOYMENT_ID_ as deploymentId,
+            depl.DEPLOY_TIME_ as deployTime
+        from
+            act_re_procdef def
+        left join
+            act_re_deployment depl on def.DEPLOYMENT_ID_ = depl.ID_
+        <where>
+            <if test="defName != null and defName != ''">
+                and def.NAME_ = #{defName}
+            </if>
+            <if test="defKey != null and defKey != ''">
+                and def.KEY_ = #{defKey}
+            </if>
+            <if test="keyWords != null and keyWords != ''">
+                and (
+                    def.NAME_ like concat('%',#{keyWords},'%') or def.KEY_ like concat('%',#{keyWords},'%')
+                )
+            </if>
+        </where>
+    </select>
+
+    <select id="queryProcessInstance" resultType="com.thd.processmanagementserver.entity.ProcessInstanceEntity">
+        select
+            procinst.ID_ as processInstanceId,
+            procinst.BUSINESS_KEY_ as businessKey,
+            procinst.START_TIME_ as processInstanceStartTime,
+            procinst.END_TIME_ as processInstanceEndTime,
+            def.ID_ as procDefId,
+            def.NAME_ as defName,
+            def.KEY_ as defKey,
+            def.VERSION_ as defVersion
+        from
+            act_hi_procinst procinst
+        left join
+            act_re_procdef def on procinst.PROC_DEF_ID_ = def.ID_
+        <where>
+            <if test="processInstanceId != null and processInstanceId != ''">
+                and procinst.ID_ = #{processInstanceId}
+            </if>
+            <if test="businessKey != null and businessKey != ''">
+                and procinst.BUSINESS_KEY_  = #{businessKey}
+            </if>
+            <if test="businessKey != null and businessKey != ''">
+                and procinst.BUSINESS_KEY_  = #{businessKey}
+            </if>
+            <if test="defName != null and defName != ''">
+                and def.NAME_ like concat('%', #{defName},'%')
+            </if>
+            <if test="defKey != null and defKey != ''">
+                and def.KEY_ like concat('%', #{defKey},'%')
+            </if>
+            <if test="procDefId != null and procDefId != ''">
+                and def.ID_ = #{procDefId}
+            </if>
+            <if test="keyWords != null and keyWords != ''">
+                and (
+                    procinst.ID_ = #{keyWords} or
+                    procinst.BUSINESS_KEY_  like concat('%', #{keyWords},'%')
+                )
+            </if>
+
+        </where>
+    </select>
+
+    <select id="queryTask" resultType="com.thd.processmanagementserver.entity.ProcessInstanceTaskEntity">
+        select
+            task.ID_ as taskId,
+            task.EXECUTION_ID_ as executionId,
+            task.NAME_ as taskName,
+            task.TASK_DEF_KEY_ as taskDefKey,
+            task.OWNER_ as taskOwner,
+            task.ASSIGNEE_ as taskAssignee,
+            task.FORM_KEY_ as taskFormKey,
+            task.CREATE_TIME_ as taskStartTime,
+            procinst.ID_ as processInstanceId,
+            procinst.BUSINESS_KEY_ as businessKey,
+            procinst.START_TIME_ as processInstanceStartTime,
+            procinst.END_TIME_ as processInstanceEndTime,
+            def.ID_ as procDefId,
+            def.NAME_ as defName,
+            def.KEY_ as defKey,
+            def.VERSION_ as defVersion
+        from
+            act_ru_task task
+        left join
+            act_hi_procinst procinst on task.PROC_INST_ID_ = procinst.PROC_INST_ID_
+        left join
+            act_re_procdef def on procinst.PROC_DEF_ID_ = def.ID_
+        <where>
+            <if test="processInstanceId != null and processInstanceId != ''">
+                and procinst.ID_ = #{processInstanceId}
+            </if>
+            <if test="businessKey != null and businessKey != ''">
+                and procinst.BUSINESS_KEY_ = #{businessKey}
+            </if>
+            <if test="keyWords != null and keyWords != ''">
+                and (
+                    procinst.ID_ = #{keyWords} or
+                    procinst.BUSINESS_KEY_  = #{keyWords}
+                )
+            </if>
+
+
+        </where>
+    </select>
+
+
+
+    <select id="queryTaskHis" resultType="com.thd.processmanagementserver.entity.ProcessInstanceTaskHisEntity">
+
+        select
+            taskhis.ID_ as taskHisId,
+            taskhis.NAME_ as taskName,
+            taskhis.TASK_DEF_KEY_ as taskDefKey,
+            taskhis.OWNER_ as taskOwner,
+            taskhis.ASSIGNEE_ as taskAssignee,
+            taskhis.FORM_KEY_ as taskFormKey,
+            taskhis.START_TIME_ as taskHisStartTime,
+            taskhis.END_TIME_ as taskHisEndTime,
+            procinst.ID_ as processInstanceId,
+            procinst.BUSINESS_KEY_ as businessKey,
+            procinst.START_TIME_ as processInstanceStartTime,
+            procinst.END_TIME_ as processInstanceEndTime,
+            def.ID_ as procDefId,
+            def.NAME_ as defName,
+            def.KEY_ as defKey,
+            def.VERSION_ as defVersion
+        from
+            act_hi_taskinst taskhis
+        left join
+            act_hi_procinst procinst on taskhis.PROC_INST_ID_ = procinst.PROC_INST_ID_
+        left join
+            act_re_procdef def on procinst.PROC_DEF_ID_ = def.ID_
+        <where>
+            <if test="processInstanceId != null and processInstanceId != ''">
+                and procinst.ID_ = #{processInstanceId}
+            </if>
+            <if test="businessKey != null and businessKey != ''">
+                and procinst.BUSINESS_KEY_ = #{businessKey}
+            </if>
+
+
+
+            <if test="keyWords != null and keyWords != ''">
+                and (
+                    procinst.ID_ = #{keyWords} or
+                    procinst.BUSINESS_KEY_  = #{keyWords}
+                )
+            </if>
+        </where>
+    </select>
+
+    <select id="queryAllProcDefKeyList" resultType="com.thd.processmanagementserver.entity.ProcDefEntity">
+        SELECT distinct
+            KEY_ as defKey,
+            NAME_ as defName
+        FROM
+             act_re_procdef;
+    </select>
+
+
+</mapper>

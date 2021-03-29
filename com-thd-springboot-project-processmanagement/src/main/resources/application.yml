@@ -1,0 +1,37 @@
+debug: false
+
+server:
+  port: 2345
+#  servlet:
+#    context-path: /thd
+
+
+spring:
+  activiti:
+
+    check-process-definitions: false #自动检查、部署流程定义文件 检查classpath是否有processes文件夹
+    database-schema-update: false #自动更新数据库结构 - 首次启动可以设置true自动创建activiti表
+    #流程定义文件存放目录
+    process-definition-location-prefix: classpath:/processes/
+    #process-definition-location-suffixes: #流程文件格式
+  datasource:
+    url: jdbc:mysql://localhost:3306/activiti?characterEncoding=UTF-8&serverTimezone=GMT%2B8&&nullCatalogMeansCurrent=true
+    username: root
+    password: 123456
+
+mybatis:
+  mapper-locations: classpath:mapper/**/*.xml #这里是mapper的配置文件
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  params:
+    count: countSql
+#trace=true
+# 打开actuator 所有端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
