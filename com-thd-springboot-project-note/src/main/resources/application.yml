@@ -8,7 +8,7 @@ management:
         include: "*"
 ############################ web ############################
 server:
-  port: 9000
+  port: 2347
 #  servlet:
 #    context-path: /thd
 

@@ -3,9 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="410ee0e2-8db6-40d9-a28a-be5aa4e995fd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-knowledgecenter/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/com-thd-springboot-project-knowledgecenter/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-note/target/classes/META-INF/com-thd-springboot-project-note.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-processmanagement/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/com-thd-springboot-project-processmanagement/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-note/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/com-thd-springboot-project-note/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-note/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/com-thd-springboot-project-note/target/classes/application.yml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -58,7 +57,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Application">
+  <component name="RunManager" selected="Application.NoteApplication">
     <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.thd.processmanagementserver.Application" />
       <module name="com-thd-springboot-project-processmanagement" />
@@ -87,8 +86,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Application" />
         <item itemvalue="Application.NoteApplication" />
+        <item itemvalue="Application.Application" />
       </list>
     </recent_temporary>
   </component>
