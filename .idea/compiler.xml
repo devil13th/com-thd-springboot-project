@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="com-thd-springboot-project-note" />
+        <module name="com-thd-springboot-project-cgexample" />
         <module name="com-thd-springboot-project-knowledgecenter" />
         <module name="com-thd-springboot-project-processmanagement" />
       </profile>

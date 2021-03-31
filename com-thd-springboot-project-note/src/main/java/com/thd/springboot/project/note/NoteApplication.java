@@ -1,4 +1,4 @@
-package com.thd.springboot;
+package com.thd.springboot.project.note;
 
 import com.spring4all.swagger.EnableSwagger2Doc;
 import org.springframework.boot.SpringApplication;
