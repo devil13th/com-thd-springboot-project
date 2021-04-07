@@ -47,7 +47,7 @@
 
     <sql id="where_like">
         where is_deleted = 0
-        <if test="id != null ">
+        <if test="id != null and id != ''">
             and cg_example.`id` like #{id}
         </if>
         <if test="userName != null and userName != '' ">

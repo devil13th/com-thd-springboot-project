@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="410ee0e2-8db6-40d9-a28a-be5aa4e995fd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-knowledgecenter/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/com-thd-springboot-project-knowledgecenter/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-note/src/main/java/com/thd/springboot/NoteApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/com-thd-springboot-project-note/src/main/java/com/thd/springboot/project/note/NoteApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-note/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/com-thd-springboot-project-note/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-note/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/com-thd-springboot-project-note/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-processmanagement/target/com-thd-springboot-project-processmanagement-1.0-SNAPSHOT.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/com-thd-springboot-project-processmanagement/target/com-thd-springboot-project-processmanagement-1.0-SNAPSHOT.jar.original" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-processmanagement/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/com-thd-springboot-project-processmanagement/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-processmanagement/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/com-thd-springboot-project-processmanagement/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-cgexample/src/main/resources/com/thd/springboot/project/cgexample/mapper/CgExampleMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/com-thd-springboot-project-cgexample/src/main/resources/com/thd/springboot/project/cgexample/mapper/CgExampleMapper.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -50,7 +42,7 @@
   <component name="ProjectId" id="1qHvkR1g7qoukMR0eNuOKK3vQsr" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
-    <property name="MyBatisLogPluginindexNum" value="793" />
+    <property name="MyBatisLogPluginindexNum" value="2" />
     <property name="MyBatisLogPluginparameters" value="Parameters:" />
     <property name="MyBatisLogPluginpreparing" value="Preparing:" />
     <property name="MyBatisLogPluginrunning" value="true" />
