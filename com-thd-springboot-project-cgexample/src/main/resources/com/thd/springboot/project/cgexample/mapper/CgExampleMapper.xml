@@ -93,10 +93,23 @@
         delete from cg_example where `id` = #{id}
     </delete>
 
+
+
     <update id="logicDelete" parameterType="java.lang.String">
         update cg_example set is_deleted=1 where `id` = #{id}
     </update>
 
+    <update id="deleteLogicByCondition" parameterType="com.thd.springboot.project.cgexample.entity.CgExampleEntity">
+        update cg_example set is_deleted=1
+        <include refid="where_like" />
+    </update>
+
+    <update id="deleteLogicByIds" parameterType="java.lang.String">
+        update cg_example set is_deleted=1 where id in
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </update>
 
 	<update id="update" parameterType="com.thd.springboot.project.cgexample.entity.CgExampleEntity">
 		update cg_example set

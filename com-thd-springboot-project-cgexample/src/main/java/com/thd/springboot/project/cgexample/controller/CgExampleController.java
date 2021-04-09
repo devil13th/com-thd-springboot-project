@@ -43,6 +43,7 @@ public class CgExampleController extends BasicController {
         this.cgExampleServiceImpl.insert(entity);
         return Message.success("SUCCESS");
     }
+
     @ResponseBody
     @PostMapping("/updateCgExample")
     // url : http://127.0.0.1:8899/thd/cg/updateCgExample
@@ -53,6 +54,7 @@ public class CgExampleController extends BasicController {
         }
         return Message.success("SUCCESS");
     }
+
     @ResponseBody
     @DeleteMapping("/physicsDeleteCgExample/{id}")
     // url : http://127.0.0.1:8899/thd/cg/physicsDeleteCgExample/15
@@ -60,7 +62,6 @@ public class CgExampleController extends BasicController {
         this.cgExampleServiceImpl.deletePhysicsById(id);
         return Message.success("SUCCESS");
     }
-
 
     @ResponseBody
     @DeleteMapping("/logicDeleteCgExample/{id}")
@@ -71,7 +72,15 @@ public class CgExampleController extends BasicController {
     }
 
 
-
+    @ResponseBody
+    @DeleteMapping("/deleteLogicByCgExampleIds")
+    // url : http://127.0.0.1:8899/thd/cg/deleteLogicByCgExampleIds
+    public Message deleteLogicByCgExampleIds(@RequestBody List<String> ids){
+        List<Object> idObjList = new ArrayList<Object>();
+        ids.forEach(id -> idObjList.add(id));
+        this.cgExampleServiceImpl.deleteLogicByIds(idObjList);
+        return Message.success("SUCCESS");
+    }
 
     @ResponseBody
     @RequestMapping("/queryCgExampleById/{id}")
@@ -89,7 +98,6 @@ public class CgExampleController extends BasicController {
         return Message.success(pi);
     }
 
-
     @ResponseBody
     @RequestMapping("/queryCgExampleLikeByPage")
     // url : http://127.0.0.1:8899/thd/cg/queryCgExampleLikeByPage
@@ -97,10 +105,6 @@ public class CgExampleController extends BasicController {
         PageInfo pi = this.cgExampleServiceImpl.queryListLikeByPage(entity);
         return Message.success(pi);
     }
-
-
-
-
 
     @ResponseBody
     @RequestMapping("/insertCgExampleBatch")
@@ -120,10 +124,5 @@ public class CgExampleController extends BasicController {
         this.cgExampleServiceImpl.insertBatch(l);
         return Message.success("Success");
     }
-
-
-
-
-
 
 }

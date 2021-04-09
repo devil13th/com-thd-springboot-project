@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -40,6 +41,8 @@ public class CgExampleServiceImpl extends BasicServiceImpl<CgExampleEntity> impl
     public List<CgExampleEntity> queryCgExampleLike(CgExampleEntity entity){
         return cgExampleMapper.queryListLike(entity);
     }
+
+
 
     public Map<String,CgExampleEntity> queryAllToMapKey(){
         return cgExampleMapper.queryAllToMapKey();
