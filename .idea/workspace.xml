@@ -2,30 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="410ee0e2-8db6-40d9-a28a-be5aa4e995fd" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-cgexample/src/main/java/com/thd/springboot/project/cgexample/CgexampleApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/com-thd-springboot-project-cgexample/src/main/java/com/thd/springboot/project/CgexampleApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-cgexample/src/main/java/com/thd/springboot/project/cgexample/controller/CgExampleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/com-thd-springboot-project-cgexample/src/main/java/com/thd/springboot/project/cgexample/controller/CgExampleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-cgexample/src/main/java/com/thd/springboot/project/cgexample/service/CgExampleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/com-thd-springboot-project-cgexample/src/main/java/com/thd/springboot/project/cgexample/service/CgExampleService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-cgexample/src/main/java/com/thd/springboot/project/cgexample/service/CgExampleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/com-thd-springboot-project-cgexample/src/main/java/com/thd/springboot/project/cgexample/service/CgExampleServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-cgexample/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/com-thd-springboot-project-cgexample/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-cgexample/src/main/resources/com/thd/springboot/project/cgexample/mapper/CgExampleMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/com-thd-springboot-project-cgexample/src/main/resources/com/thd/springboot/project/cgexample/mapper/CgExampleMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-cgexample/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/com-thd-springboot-project-cgexample/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-cgexample/target/classes/com/thd/springboot/project/cgexample/mapper/CgExampleMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/com-thd-springboot-project-cgexample/target/classes/com/thd/springboot/project/cgexample/mapper/CgExampleMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-processmanagement/src/main/resources/static/asset-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/com-thd-springboot-project-processmanagement/src/main/resources/static/asset-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-processmanagement/src/main/resources/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/com-thd-springboot-project-processmanagement/src/main/resources/static/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-processmanagement/src/main/resources/static/static/js/2.ceccea38.chunk.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/com-thd-springboot-project-processmanagement/src/main/resources/static/static/js/2.ceccea38.chunk.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-processmanagement/src/main/resources/static/static/js/3.9bc62244.chunk.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/com-thd-springboot-project-processmanagement/src/main/resources/static/static/js/3.9bc62244.chunk.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-processmanagement/src/main/resources/static/static/js/main.44736040.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-processmanagement/src/main/resources/static/static/js/main.44736040.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-processmanagement/target/classes/static/asset-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/com-thd-springboot-project-processmanagement/target/classes/static/asset-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-processmanagement/target/classes/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/com-thd-springboot-project-processmanagement/target/classes/static/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-processmanagement/target/classes/static/static/js/2.ceccea38.chunk.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/com-thd-springboot-project-processmanagement/target/classes/static/static/js/2.ceccea38.chunk.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-processmanagement/target/classes/static/static/js/3.9bc62244.chunk.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/com-thd-springboot-project-processmanagement/target/classes/static/static/js/3.9bc62244.chunk.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-processmanagement/target/classes/static/static/js/main.44736040.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-processmanagement/target/classes/static/static/js/main.44736040.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-processmanagement/target/com-thd-springboot-project-processmanagement-1.0-SNAPSHOT.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/com-thd-springboot-project-processmanagement/target/com-thd-springboot-project-processmanagement-1.0-SNAPSHOT.jar.original" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-processmanagement/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/com-thd-springboot-project-processmanagement/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-processmanagement/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/com-thd-springboot-project-processmanagement/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-processmanagement/com-thd-springboot-project-processmanagement.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -69,31 +50,32 @@
     <property name="MyBatisLogPluginpreparing" value="Preparing:" />
     <property name="MyBatisLogPluginrunning" value="true" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/com-thd-springboot-project-note/src/main/java/com/thd/springboot/project/note" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/com-thd-springboot-project-cgexample/src/main/java/com/thd/springboot/project/cgexample/controller" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/com-thd-springboot-project-testframework/src/main/java/com/thd/testframework/vo" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.testRunning" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\devil13th\github\com-thd-springboot-project\com-thd-springboot-project-cgexample\src\main\resources\com\thd\springboot\project\cgexample\mapper" />
-    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.thd.springboot.project.cgexample.mapper" />
       <recent name="com.thd.springboot.project" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\work\java\com-thd-springboot-project\com-thd-springboot-project-testframework\src\main\java\com\thd\testframework\vo" />
+      <recent name="D:\work\java\com-thd-springboot-project\com-thd-springboot-project-testframework\src\main\resources" />
+      <recent name="D:\devil13th\github\com-thd-springboot-project\com-thd-springboot-project-cgexample\src\main\java\com\thd\springboot\project\cgexample\controller" />
+      <recent name="D:\devil13th\github\com-thd-springboot-project\com-thd-springboot-project-cgexample\src\main\java\com\thd\springboot\project\cgexample\service" />
+      <recent name="D:\devil13th\github\com-thd-springboot-project\com-thd-springboot-project-cgexample\src\main\java\com\thd\springboot\project\cgexample\mapper" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.thd.testframework" />
       <recent name="com.thd.springboot.project.cgexample" />
       <recent name="com.thd.springboot.project.cgexample.controller" />
       <recent name="com.thd.springboot.project.cgexample.service" />
       <recent name="com.thd.springboot.project.cgexample.mapper" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\devil13th\github\com-thd-springboot-project\com-thd-springboot-project-cgexample\src\main\java\com\thd\springboot\project\cgexample\controller" />
-      <recent name="D:\devil13th\github\com-thd-springboot-project\com-thd-springboot-project-cgexample\src\main\java\com\thd\springboot\project\cgexample\service" />
-      <recent name="D:\devil13th\github\com-thd-springboot-project\com-thd-springboot-project-cgexample\src\main\java\com\thd\springboot\project\cgexample\mapper" />
-      <recent name="D:\devil13th\github\com-thd-springboot-project\com-thd-springboot-project-cgexample\src\main\java\com\thd\springboot\project\cgexample\entity" />
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\devil13th\github\com-thd-springboot-project\com-thd-springboot-project-cgexample\src\main\resources\com\thd\springboot\project\cgexample\mapper" />
     </key>
   </component>
@@ -109,7 +91,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.CgexampleApplication">
+  <component name="RunManager" selected="Application.TestFrameworkApplication">
     <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.thd.processmanagementserver.Application" />
       <module name="com-thd-springboot-project-processmanagement" />
@@ -149,8 +131,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TestFrameworkApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.thd.testframework.TestFrameworkApplication" />
+      <module name="com-thd-springboot-project-testframework" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.thd.testframework.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.TestFrameworkApplication" />
         <item itemvalue="Application.CgexampleApplication" />
         <item itemvalue="Application.Application" />
         <item itemvalue="Application.NoteApplication" />
