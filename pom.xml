@@ -13,6 +13,7 @@
         <module>com-thd-springboot-project-knowledgecenter</module>
         <module>com-thd-springboot-project-processmanagement</module>
         <module>com-thd-springboot-project-cgexample</module>
+        <module>com-thd-springboot-project-testframework</module>
     </modules>
 
 
