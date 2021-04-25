@@ -2,25 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="efe86c7b-7c7c-4837-aaf6-3e1121c31cf8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-cgexample/target/maven-archiver/pom.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-cgexample/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-cgexample/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-cgexample/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-knowledgecenter/target/maven-archiver/pom.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-knowledgecenter/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-knowledgecenter/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-cgexample/src/main/java/com/thd/springboot/project/cgexample/controller/CgExampleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/com-thd-springboot-project-cgexample/src/main/java/com/thd/springboot/project/cgexample/controller/CgExampleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-cgexample/src/main/java/com/thd/springboot/project/cgexample/controller/CgTestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/com-thd-springboot-project-cgexample/src/main/java/com/thd/springboot/project/cgexample/controller/CgTestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-cgexample/src/main/java/com/thd/springboot/project/cgexample/controller/MyPlanController.java" beforeDir="false" afterPath="$PROJECT_DIR$/com-thd-springboot-project-cgexample/src/main/java/com/thd/springboot/project/cgexample/controller/MyPlanController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-note/src/main/java/com/thd/springboot/project/note/controller/NoteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/com-thd-springboot-project-note/src/main/java/com/thd/springboot/project/note/controller/NoteController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-note/target/maven-archiver/pom.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-note/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-note/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-note/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-processmanagement/target/com-thd-springboot-project-processmanagement-1.0-SNAPSHOT.jar.original" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-processmanagement/target/maven-archiver/pom.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-processmanagement/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-processmanagement/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-processmanagement/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-testframework/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/com-thd-springboot-project-testframework/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-testframework/src/main/java/com/thd/testframework/controller/TestFrameworkController.java" beforeDir="false" afterPath="$PROJECT_DIR$/com-thd-springboot-project-testframework/src/main/java/com/thd/testframework/controller/TestFrameworkController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-testframework/src/main/java/com/thd/testframework/vo/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/com-thd-springboot-project-testframework/src/main/java/com/thd/testframework/vo/User.java" afterDir="false" />
     </list>
