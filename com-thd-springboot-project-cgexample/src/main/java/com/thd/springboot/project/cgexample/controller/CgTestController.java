@@ -3,7 +3,7 @@ package com.thd.springboot.project.cgexample.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.thd.springboot.framework.model.Message;
-import com.thd.springboot.framework.web.BasicController;
+import com.thd.springboot.framework.web.controller.BasicController;
 import com.thd.springboot.project.cgexample.entity.CgTestEntity;
 import com.thd.springboot.project.cgexample.service.CgTestService;
 import org.springframework.beans.factory.annotation.Autowired;

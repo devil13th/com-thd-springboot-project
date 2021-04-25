@@ -30,11 +30,11 @@ public class User implements Serializable {
     private Item item;
     private List<Item> itemList;
     private List<User> children;
-    @JsonDeserialize(using = JsonLocalDateTimeDeserializer.class)
-    @JsonSerialize(using = JsonLocalDateTimeSerializer.class)
+//    @JsonDeserialize(using = JsonLocalDateTimeDeserializer.class)
+//    @JsonSerialize(using = JsonLocalDateTimeSerializer.class)
     private LocalDateTime ldt;
-    @JsonDeserialize(using = JsonLocalDateDeserializer.class)
-    @JsonSerialize(using = JsonLocalDateSerializer.class)
+//    @JsonDeserialize(using = JsonLocalDateDeserializer.class)
+//    @JsonSerialize(using = JsonLocalDateSerializer.class)
     private LocalDate ld;
 
 

@@ -4,7 +4,7 @@ package com.thd.springboot.project.note.controller;
 import com.github.pagehelper.PageInfo;
 import com.thd.springboot.framework.model.Message;
 import com.thd.springboot.framework.utils.UuidUtils;
-import com.thd.springboot.framework.web.BasicController;
+import com.thd.springboot.framework.web.controller.BasicController;
 import com.thd.springboot.project.note.entity.NoteEntity;
 import com.thd.springboot.project.note.service.NoteService;
 import org.springframework.beans.factory.annotation.Autowired;

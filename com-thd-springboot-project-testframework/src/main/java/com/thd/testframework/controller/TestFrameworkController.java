@@ -1,6 +1,6 @@
 package com.thd.testframework.controller;
 
-import com.thd.springboot.framework.web.BasicController;
+import com.thd.springboot.framework.web.controller.BasicController;
 import com.thd.testframework.vo.MyBean01;
 import com.thd.testframework.vo.User;
 import org.springframework.beans.factory.annotation.Autowired;
