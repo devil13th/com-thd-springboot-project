@@ -1,4 +1,4 @@
-package com.thd.springboot.project.note.entity.parent;
+package com.thd.springboot.project.note.entity;
 
 import lombok.Data;
 import com.thd.springboot.framework.entity.BasicEntity;

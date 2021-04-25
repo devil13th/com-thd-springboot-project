@@ -1,7 +1,6 @@
 package com.thd.springboot.project.note.entity;
 
 
-import com.thd.springboot.project.note.entity.parent.NoteEntityParent;
 import lombok.Data;
 
 @Data

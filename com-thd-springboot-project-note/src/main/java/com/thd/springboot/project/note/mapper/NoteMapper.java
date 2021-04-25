@@ -7,8 +7,9 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.Map;
-@Mapper
+
 @Repository
+@Mapper
 public interface NoteMapper extends BasicMapper<NoteEntity> {
 
     // 返回map, key为指定属性，value为实体类结果集
