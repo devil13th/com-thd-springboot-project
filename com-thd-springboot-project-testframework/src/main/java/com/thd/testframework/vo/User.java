@@ -1,9 +1,16 @@
 package com.thd.testframework.vo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.thd.springboot.framework.jackson.jsondeserializers.JsonLocalDateDeserializer;
+import com.thd.springboot.framework.jackson.jsondeserializers.JsonLocalDateTimeDeserializer;
+import com.thd.springboot.framework.jackson.jsonserializers.JsonLocalDateSerializer;
+import com.thd.springboot.framework.jackson.jsonserializers.JsonLocalDateTimeSerializer;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
@@ -23,10 +30,15 @@ public class User implements Serializable {
     private Item item;
     private List<Item> itemList;
     private List<User> children;
-
+    @JsonDeserialize(using = JsonLocalDateTimeDeserializer.class)
+    @JsonSerialize(using = JsonLocalDateTimeSerializer.class)
     private LocalDateTime ldt;
+    @JsonDeserialize(using = JsonLocalDateDeserializer.class)
+    @JsonSerialize(using = JsonLocalDateSerializer.class)
+    private LocalDate ld;
 
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+
+    @JsonFormat(pattern="yyyy|MM|dd HH:mm:ss", timezone = "GMT+8")
     private Timestamp userCreateTime;
 
     public String getUserId() {
@@ -101,13 +113,26 @@ public class User implements Serializable {
         this.children = children;
     }
 
+    public LocalDate getLd() {
+        return ld;
+    }
+
+    public void setLd(LocalDate ld) {
+        this.ld = ld;
+    }
+
     @Override
     public String toString() {
-        return "MyUser{" +
+        return "User{" +
                 "userId='" + userId + '\'' +
                 ", userName='" + userName + '\'' +
                 ", userAge=" + userAge +
                 ", userBirthday=" + userBirthday +
+                ", item=" + item +
+                ", itemList=" + itemList +
+                ", children=" + children +
+                ", ldt=" + ldt +
+                ", ld=" + ld +
                 ", userCreateTime=" + userCreateTime +
                 '}';
     }

@@ -1,7 +1,112 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="efe86c7b-7c7c-4837-aaf6-3e1121c31cf8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-cgexample/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-cgexample/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-cgexample/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-cgexample/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-knowledgecenter/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-knowledgecenter/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-knowledgecenter/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-note/src/main/java/com/thd/springboot/project/note/controller/NoteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/com-thd-springboot-project-note/src/main/java/com/thd/springboot/project/note/controller/NoteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-note/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-note/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-note/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-note/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-processmanagement/target/com-thd-springboot-project-processmanagement-1.0-SNAPSHOT.jar.original" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-processmanagement/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-processmanagement/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-processmanagement/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-processmanagement/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-testframework/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/com-thd-springboot-project-testframework/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-testframework/src/main/java/com/thd/testframework/controller/TestFrameworkController.java" beforeDir="false" afterPath="$PROJECT_DIR$/com-thd-springboot-project-testframework/src/main/java/com/thd/testframework/controller/TestFrameworkController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-testframework/src/main/java/com/thd/testframework/vo/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/com-thd-springboot-project-testframework/src/main/java/com/thd/testframework/vo/User.java" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CompilerWorkspaceConfiguration">
+    <option name="MAKE_PROJECT_ON_SAVE" value="true" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="JRebelWorkspace">
+    <option name="jrebelEnabledAutocompile" value="true" />
+  </component>
   <component name="ProjectId" id="1rdjWKWIhLSld8chlCqubz4jE28" />
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/com-thd-springboot-project-testframework/src/main/java/com/thd/testframework/vo" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.thd.testframework.config" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\devil13th\github\com-thd-springboot-project\com-thd-springboot-project-testframework\src\main\java\com\thd\testframework\vo" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="TestFrameworkApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.thd.testframework.TestFrameworkApplication" />
+      <module name="com-thd-springboot-project-testframework" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.thd.testframework.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.TestFrameworkApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="efe86c7b-7c7c-4837-aaf6-3e1121c31cf8" name="Default Changelist" comment="" />
+      <created>1619312890478</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1619312890478</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
 </project>

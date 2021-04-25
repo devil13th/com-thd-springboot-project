@@ -3,7 +3,7 @@ package com.thd.springboot.project.note.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.thd.springboot.framework.model.Message;
-import com.thd.springboot.framework.utils.UuidUtil;
+import com.thd.springboot.framework.utils.UuidUtils;
 import com.thd.springboot.framework.web.BasicController;
 import com.thd.springboot.project.note.entity.NoteEntity;
 import com.thd.springboot.project.note.service.NoteService;
@@ -28,7 +28,7 @@ public class  NoteController extends BasicController {
     @PostMapping("/addNote")
     // url : http://127.0.0.1:8899/thd/cg/addNote
     public Message addNote(@RequestBody NoteEntity entity){
-        entity.setNoteId(UuidUtil.uuid());
+        entity.setNoteId(UuidUtils.uuid());
         this.noteService.insert(entity);
         return Message.success(entity);
     }
