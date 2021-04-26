@@ -37,6 +37,15 @@ public class TestFrameworkController extends BasicController {
     @RequestMapping("/testPostDate")
     @ResponseBody
     // url : http://127.0.0.1:8899/thd/testframework/testPostDate
+    /*
+    requestbody:
+    {
+        "userBirthday":"2021-01-01 12:23:23",
+        "ldt":"2021-01-02 12:23:23",
+        "ld":"2021-01-03",
+        "userCreateTime":"2021|01|04 12:23:23"
+    }
+     */
     public ResponseEntity testPostDate(@RequestBody User user){
         System.out.println(user);
         return ResponseEntity.ok(user);
