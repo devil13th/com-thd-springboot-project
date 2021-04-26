@@ -2,14 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="efe86c7b-7c7c-4837-aaf6-3e1121c31cf8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-cgexample/src/main/java/com/thd/springboot/project/cgexample/controller/CgExampleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/com-thd-springboot-project-cgexample/src/main/java/com/thd/springboot/project/cgexample/controller/CgExampleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-cgexample/src/main/java/com/thd/springboot/project/cgexample/controller/CgTestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/com-thd-springboot-project-cgexample/src/main/java/com/thd/springboot/project/cgexample/controller/CgTestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-cgexample/src/main/java/com/thd/springboot/project/cgexample/controller/MyPlanController.java" beforeDir="false" afterPath="$PROJECT_DIR$/com-thd-springboot-project-cgexample/src/main/java/com/thd/springboot/project/cgexample/controller/MyPlanController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-note/src/main/java/com/thd/springboot/project/note/controller/NoteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/com-thd-springboot-project-note/src/main/java/com/thd/springboot/project/note/controller/NoteController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-testframework/src/main/java/com/thd/testframework/controller/TestFrameworkController.java" beforeDir="false" afterPath="$PROJECT_DIR$/com-thd-springboot-project-testframework/src/main/java/com/thd/testframework/controller/TestFrameworkController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-testframework/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/com-thd-springboot-project-testframework/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-testframework/src/main/java/com/thd/testframework/config/BeanIocConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-testframework/src/main/java/com/thd/testframework/controller/TestFrameworkController.java" beforeDir="false" afterPath="$PROJECT_DIR$/com-thd-springboot-project-testframework/src/main/java/com/thd/testframework/controller/TestJackson2ObjectMapperBuilderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-testframework/src/main/java/com/thd/testframework/vo/MyBean01.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-testframework/src/main/java/com/thd/testframework/vo/MyBean02.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-testframework/src/main/java/com/thd/testframework/vo/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/com-thd-springboot-project-testframework/src/main/java/com/thd/testframework/vo/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-testframework/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/com-thd-springboot-project-testframework/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com-thd-springboot-project-testframework/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/com-thd-springboot-project-testframework/target/classes/application.yml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

@@ -136,4 +136,22 @@ public class User implements Serializable {
                 ", userCreateTime=" + userCreateTime +
                 '}';
     }
+
+    public static User getInstance(){
+        User u = new User();
+        u.setUserAge(5);
+        u.setUserBirthday(new Date());
+        u.setUserId("1");
+        u.setUserName("devil13th");
+        u.setUserCreateTime(new Timestamp(new Date().getTime()));
+        u.setLd(LocalDate.now());
+        u.setLdt(LocalDateTime.now());
+
+        Item item = new Item();
+        item.setId(30);
+        item.setName("mama");
+        item.setType("family");
+        u.setItem(item);
+        return u;
+    }
 }
