@@ -29,18 +29,19 @@ public class TestRedissionController {
     @ResponseBody
     // url : http://127.0.0.1:8899/thd/redission/testtryLock
     public ResponseEntity testtryLock(){
+        System.out.println("=== 开始"  + "|" + Thread.currentThread().getName());
         Lock lock = redissonClient.getLock("lock");
         lock.lock();
-        System.out.println("锁住"  + "|" + Thread.currentThread().getName());
+        System.out.println("=== 锁住"  + "|" + Thread.currentThread().getName());
         try {
-            Thread.sleep(5000);
-            System.out.println("已解锁");
+            Thread.sleep(3000);
+            System.out.println("=== 已解锁" + "|" + Thread.currentThread().getName());
             lock.unlock();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        return ResponseEntity.ok(CommonConstants.STATUS_SUCCESS);
+        return ResponseEntity.ok(Math.random());
     }
 
     @RequestMapping("/testunLock")
