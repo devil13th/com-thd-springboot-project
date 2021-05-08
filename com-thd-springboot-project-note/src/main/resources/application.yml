@@ -63,8 +63,13 @@ spring:
       url-pattern: /*
       # 忽略过滤格式
       exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
-  ############################ redis ############################
-
+  ############################ elasticsearch ############################
+  data:
+    elasticsearch:
+      cluster-name: elasticsearch #默认即为elasticsearch
+      cluster-nodes: 127.0.0.1:9200 #配置es节点信息，逗号分隔，如果没有指定，则启动ClientNode
+      repositories:
+        enabled: true
   ############################ swagger ############################
   swagger:
     enabled: true                                  # 是否启用swagger

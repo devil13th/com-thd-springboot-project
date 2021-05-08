@@ -6,7 +6,13 @@ import com.thd.springboot.framework.model.Message;
 import com.thd.springboot.framework.utils.UuidUtils;
 import com.thd.springboot.framework.web.controller.BasicController;
 import com.thd.springboot.project.note.entity.NoteEntity;
+import com.thd.springboot.project.note.service.NoteEsService;
 import com.thd.springboot.project.note.service.NoteService;
+import org.elasticsearch.client.RequestOptions;
+import org.elasticsearch.client.RestHighLevelClient;
+import org.elasticsearch.client.indices.CreateIndexRequest;
+import org.elasticsearch.client.indices.CreateIndexResponse;
+import org.elasticsearch.common.xcontent.XContentType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,13 +29,47 @@ public class  NoteController extends BasicController {
 
 	@Autowired
 	private NoteService noteService;
+    @Autowired
+    private RestHighLevelClient esClient;
+    @Autowired
+    private NoteEsService noteEsService;
+
+
+
+    @ResponseBody
+    @GetMapping("/search")
+    // url : http://127.0.0.1:8899/thd/note/search
+    public Message search(@RequestParam String keyWords,@RequestParam(required = false) String classify) throws Exception{
+        return Message.success(this.noteEsService.search(keyWords,classify));
+    }
+
+    @ResponseBody
+    @GetMapping("/createNoteIndex")
+    // url : http://127.0.0.1:8899/thd/note/createNoteIndex
+    public Message createNoteIndex() throws Exception{
+        return Message.success(this.noteEsService.createIndex());
+    }
+
+
+    @ResponseBody
+    @GetMapping("/deleteNodeIndex")
+    // url : http://127.0.0.1:8899/thd/note/deleteNodeIndex
+    public Message deleteNodeIndex() throws Exception{
+        return Message.success(this.noteEsService.deleteIndex());
+    }
+
+
+
+
+
 
 	@ResponseBody
     @PostMapping("/addNote")
-    // url : http://127.0.0.1:8899/thd/cg/addNote
-    public Message addNote(@RequestBody NoteEntity entity){
+    // url : http://127.0.0.1:8899/thd/note/addNote
+    public Message addNote(@RequestBody NoteEntity entity) throws Exception{
         entity.setNoteId(UuidUtils.uuid());
         this.noteService.insert(entity);
+        this.noteEsService.index(entity);
         return Message.success(entity);
     }
 

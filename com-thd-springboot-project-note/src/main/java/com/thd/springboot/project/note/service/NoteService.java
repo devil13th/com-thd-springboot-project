@@ -10,4 +10,7 @@ public interface NoteService extends BasicService<NoteEntity> {
 
     // 批量插入
     public void insertBatch(List<NoteEntity> list);
+
+
+
 }
