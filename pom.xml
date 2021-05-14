@@ -10,10 +10,10 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>com-thd-springboot-project-note</module>
-        <module>com-thd-springboot-project-knowledgecenter</module>
         <module>com-thd-springboot-project-processmanagement</module>
         <module>com-thd-springboot-project-cgexample</module>
         <module>com-thd-springboot-project-testframework</module>
+        <module>com-thd-springboot-project-knowledge</module>
     </modules>
 
 
