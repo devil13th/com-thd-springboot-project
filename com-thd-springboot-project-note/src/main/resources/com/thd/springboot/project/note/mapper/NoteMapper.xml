@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
-		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.thd.springboot.project.note.mapper.NoteMapper">
 		<!-- Result Map -->
-    	<resultMap id="ResultMap" type="com.thd.springboot.project.note.entity.NoteEntity">
+    <resultMap id="ResultMap" type="com.thd.springboot.project.note.entity.NoteEntity">
     		<result column="note_id" property="noteId" />
     		<result column="classify" property="classify" />
     		<result column="title" property="title" />
     		<result column="content" property="content" />
     		<result column="expire_date" property="expireDate" />
     		<result column="alarm_days" property="alarmDays" />
+    		<result column="todo_level" property="todoLevel" />
+    		<result column="todo_status" property="todoStatus" />
+    		<result column="start_time" property="startTime" />
+    		<result column="finish_time" property="finishTime" />
     		<result column="create_by" property="createBy" />
     		<result column="create_time" property="createTime" />
     		<result column="modify_by" property="modifyBy" />
@@ -23,23 +27,27 @@
             note
     </sql>
 
-	<!-- 所有字段 -->
-	<sql id="column_list">
+    <!-- 所有字段 -->
+    <sql id="column_list">
         note.`note_id`, <!-- 0  -->
         note.`classify`, <!-- 1  -->
         note.`title`, <!-- 2  -->
         note.`content`, <!-- 3  -->
         note.`expire_date`, <!-- 4  -->
         note.`alarm_days`, <!-- 5  -->
-        note.`create_by`, <!-- 6  -->
-        note.`create_time`, <!-- 7  -->
-        note.`modify_by`, <!-- 8  -->
-        note.`modify_time`, <!-- 9  -->
-        note.`is_deleted` <!-- 10  -->
+        note.`todo_level`, <!-- 6  -->
+        note.`todo_status`, <!-- 7  -->
+        note.`start_time`, <!-- 8  -->
+        note.`finish_time`, <!-- 9  -->
+        note.`create_by`, <!-- 10  -->
+        note.`create_time`, <!-- 11  -->
+        note.`modify_by`, <!-- 12  -->
+        note.`modify_time`, <!-- 13  -->
+        note.`is_deleted` <!-- 14  -->
 	</sql>
 
-	<!-- 查询条件 -->
-	<sql id="where_eq">
+    <!-- 查询条件 -->
+    <sql id="where_eq">
 		where is_deleted = 0
 
 
@@ -65,10 +73,22 @@
             <if test="alarmDays != null ">
                 and note.`alarm_days` = #{alarmDays}
             </if>
+            <if test="todoLevel != null ">
+                and note.`todo_level` = #{todoLevel}
+            </if>
+            <if test="todoStatus != null ">
+                and note.`todo_status` = #{todoStatus}
+            </if>
+            <if test="startTime != null ">
+                and note.`start_time` = #{startTime}
+            </if>
+            <if test="finishTime != null ">
+                and note.`finish_time` = #{finishTime}
+            </if>
 	</sql>
 
-	<!-- like查询条件 -->
-	<sql id="where_like">
+    <!-- like查询条件 -->
+    <sql id="where_like">
 		where is_deleted = 0
 
 
@@ -96,10 +116,22 @@
             <if test="alarmDays != null ">
                 and note.`alarm_days` = #{alarmDays}
             </if>
+            <if test="todoLevel != null ">
+                and note.`todo_level` = #{todoLevel}
+            </if>
+            <if test="todoStatus != null ">
+                and note.`todo_status` = #{todoStatus}
+            </if>
+            <if test="startTime != null ">
+                and note.`start_time` = #{startTime}
+            </if>
+            <if test="finishTime != null ">
+                and note.`finish_time` = #{finishTime}
+            </if>
 	</sql>
 
-	<!-- 插入记录 -->
-	<insert id="insert" parameterType="com.thd.springboot.project.note.entity.NoteEntity">
+    <!-- 插入记录 -->
+    <insert id="insert" parameterType="com.thd.springboot.project.note.entity.NoteEntity">
 	    insert into <include refid="table_name"/> (
 	    `note_id`,
             `classify`,
@@ -107,6 +139,10 @@
             `content`,
             `expire_date`,
             `alarm_days`,
+            `todo_level`,
+            `todo_status`,
+            `start_time`,
+            `finish_time`,
             `create_by`,
             `create_time`,
             `modify_by`,
@@ -120,6 +156,10 @@
             #{content},
             #{expireDate},
             #{alarmDays},
+            #{todoLevel},
+            #{todoStatus},
+            #{startTime},
+            #{finishTime},
             #{createBy},
             #{createTime},
             #{modifyBy},
@@ -128,8 +168,8 @@
         )
 	</insert>
 
-	<!-- 根据id，修改记录 -->
-	<update id="update" parameterType="com.thd.springboot.project.note.entity.NoteEntity">
+    <!-- 根据id，修改记录 -->
+    <update id="update" parameterType="com.thd.springboot.project.note.entity.NoteEntity">
 		update <include refid="table_name"/> set
 	    <trim  suffixOverrides="," >
             <if test="noteId != null ">
@@ -149,6 +189,18 @@
             </if>
             <if test="alarmDays != null ">
                 `alarm_days`=#{alarmDays},
+            </if>
+            <if test="todoLevel != null ">
+                `todo_level`=#{todoLevel},
+            </if>
+            <if test="todoStatus != null ">
+                `todo_status`=#{todoStatus},
+            </if>
+            <if test="startTime != null ">
+                `start_time`=#{startTime},
+            </if>
+            <if test="finishTime != null ">
+                `finish_time`=#{finishTime},
             </if>
             <if test="createBy != null ">
                 `create_by`=#{createBy},
@@ -188,6 +240,18 @@
             <if test="targetBean.alarmDays != null ">
                 `alarm_days`=#{targetBean.alarmDays},
             </if>
+            <if test="targetBean.todoLevel != null ">
+                `todo_level`=#{targetBean.todoLevel},
+            </if>
+            <if test="targetBean.todoStatus != null ">
+                `todo_status`=#{targetBean.todoStatus},
+            </if>
+            <if test="targetBean.startTime != null ">
+                `start_time`=#{targetBean.startTime},
+            </if>
+            <if test="targetBean.finishTime != null ">
+                `finish_time`=#{targetBean.finishTime},
+            </if>
             <if test="targetBean.createBy != null ">
                 `create_by`=#{targetBean.createBy},
             </if>
@@ -220,6 +284,18 @@
         </if>
         <if test="conditionBean.alarmDays != null ">
             and `alarm_days`=#{conditionBean.alarmDays}
+        </if>
+        <if test="conditionBean.todoLevel != null ">
+            and `todo_level`=#{conditionBean.todoLevel}
+        </if>
+        <if test="conditionBean.todoStatus != null ">
+            and `todo_status`=#{conditionBean.todoStatus}
+        </if>
+        <if test="conditionBean.startTime != null ">
+            and `start_time`=#{conditionBean.startTime}
+        </if>
+        <if test="conditionBean.finishTime != null ">
+            and `finish_time`=#{conditionBean.finishTime}
         </if>
         <if test="conditionBean.createBy != null ">
             and `create_by`=#{conditionBean.createBy}
@@ -265,8 +341,8 @@
 
 
 
-	<!-- 根据id查询 -->
-	<select id="queryById" resultMap="ResultMap" parameterType="String">
+    <!-- 根据id查询 -->
+    <select id="queryById" resultMap="ResultMap" parameterType="String">
 		select <include refid="column_list" /> from <include refid="table_name"/> where is_deleted=0 and `note_id` = #{noteId}
 	</select>
 
@@ -277,29 +353,35 @@
         from
         <include refid="table_name" />
         <include refid="where_eq" />
+
+
     </select>
 
-	<!-- 查询列表 -->
-	<select id="queryListEq" resultMap="ResultMap"
-		parameterType="com.thd.springboot.project.note.entity.NoteEntity">
+    <!-- 查询列表 -->
+    <select id="queryListEq" resultMap="ResultMap"
+            parameterType="com.thd.springboot.project.note.entity.NoteEntity">
 		select
         <include refid="column_list" />
         from <include refid="table_name"/>
         <include refid="where_eq" />
-         <!--
-        <if test="orderBy != null and orderBy != ''">
-         order by #{orderBy}
-        </if>
-        -->
+
+        order by todo_status asc,todo_level desc,expire_date asc
+        <!--
+       <if test="orderBy != null and orderBy != ''">
+        order by #{orderBy}
+       </if>
+       -->
 	</select>
 
-	<!-- 查询列表 -->
-	<select id="queryListLike" resultMap="ResultMap"
-		parameterType="com.thd.springboot.project.note.entity.NoteEntity">
+    <!-- 查询列表 -->
+    <select id="queryListLike" resultMap="ResultMap"
+            parameterType="com.thd.springboot.project.note.entity.NoteEntity">
 		select
         <include refid="column_list" />
         from <include refid="table_name"/>
         <include refid="where_like" />
+
+        order by todo_status asc,todo_level desc,expire_date asc
         <!--
         <if test="orderBy != null and orderBy != ''">
          order by  #{orderBy}
@@ -325,6 +407,10 @@
            content,
            expire_date,
            alarm_days,
+           todo_level,
+           todo_status,
+           start_time,
+           finish_time,
            create_by,
            create_time,
            modify_by,
@@ -340,6 +426,10 @@
                 #{r.content},
                 #{r.expireDate},
                 #{r.alarmDays},
+                #{r.todoLevel},
+                #{r.todoStatus},
+                #{r.startTime},
+                #{r.finishTime},
                 #{r.createBy},
                 #{r.createTime},
                 #{r.modifyBy},

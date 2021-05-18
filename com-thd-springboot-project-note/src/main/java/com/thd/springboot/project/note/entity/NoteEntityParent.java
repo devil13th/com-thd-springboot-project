@@ -22,4 +22,14 @@ public class  NoteEntityParent extends BasicEntity {
     private Date expireDate;
     // 
     private Integer alarmDays;
+    // 
+    private Integer todoLevel;
+    // 
+    private Integer todoStatus;
+    //
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT+8")
+    private Date startTime;
+    //
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT+8")
+    private Date finishTime;
 }

@@ -2,17 +2,12 @@ package com.thd.springboot.project.note.controller;
 
 
 import com.github.pagehelper.PageInfo;
+import com.thd.springboot.framework.constants.CommonConstants;
 import com.thd.springboot.framework.model.Message;
 import com.thd.springboot.framework.utils.UuidUtils;
 import com.thd.springboot.framework.web.controller.BasicController;
 import com.thd.springboot.project.note.entity.NoteEntity;
-import com.thd.springboot.project.note.service.NoteEsService;
 import com.thd.springboot.project.note.service.NoteService;
-import org.elasticsearch.client.RequestOptions;
-import org.elasticsearch.client.RestHighLevelClient;
-import org.elasticsearch.client.indices.CreateIndexRequest;
-import org.elasticsearch.client.indices.CreateIndexResponse;
-import org.elasticsearch.common.xcontent.XContentType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,34 +24,34 @@ public class  NoteController extends BasicController {
 
 	@Autowired
 	private NoteService noteService;
-    @Autowired
-    private RestHighLevelClient esClient;
-    @Autowired
-    private NoteEsService noteEsService;
+//    @Autowired
+//    private RestHighLevelClient esClient;
+//    @Autowired
+//    private NoteEsService noteEsService;
 
 
 
-    @ResponseBody
-    @GetMapping("/search")
-    // url : http://127.0.0.1:8899/thd/note/search
-    public Message search(@RequestParam String keyWords,@RequestParam(required = false) String classify) throws Exception{
-        return Message.success(this.noteEsService.search(keyWords,classify));
-    }
+//    @ResponseBody
+//    @GetMapping("/search")
+//    // url : http://127.0.0.1:8899/thd/note/search
+//    public Message search(@RequestParam String keyWords,@RequestParam(required = false) String classify) throws Exception{
+//        return Message.success(this.noteEsService.search(keyWords,classify));
+//    }
 
-    @ResponseBody
-    @GetMapping("/createNoteIndex")
-    // url : http://127.0.0.1:8899/thd/note/createNoteIndex
-    public Message createNoteIndex() throws Exception{
-        return Message.success(this.noteEsService.createIndex());
-    }
+//    @ResponseBody
+//    @GetMapping("/createNoteIndex")
+//    // url : http://127.0.0.1:8899/thd/note/createNoteIndex
+//    public Message createNoteIndex() throws Exception{
+//        return Message.success(this.noteEsService.createIndex());
+//    }
 
 
-    @ResponseBody
-    @GetMapping("/deleteNodeIndex")
-    // url : http://127.0.0.1:8899/thd/note/deleteNodeIndex
-    public Message deleteNodeIndex() throws Exception{
-        return Message.success(this.noteEsService.deleteIndex());
-    }
+//    @ResponseBody
+//    @GetMapping("/deleteNodeIndex")
+//    // url : http://127.0.0.1:8899/thd/note/deleteNodeIndex
+//    public Message deleteNodeIndex() throws Exception{
+//        return Message.success(this.noteEsService.deleteIndex());
+//    }
 
 
 
@@ -69,7 +64,7 @@ public class  NoteController extends BasicController {
     public Message addNote(@RequestBody NoteEntity entity) throws Exception{
         entity.setNoteId(UuidUtils.uuid());
         this.noteService.insert(entity);
-        this.noteEsService.index(entity);
+//        this.noteEsService.index(entity);
         return Message.success(entity);
     }
 
@@ -135,7 +130,26 @@ public class  NoteController extends BasicController {
         return Message.success(pi);
     }
 
+    @ResponseBody
+    @RequestMapping("/toggleNoteState/{id}")
+    public Message toggleNoteState(@PathVariable String id){
+        NoteEntity noteEntity = this.noteService.queryById(id);
+        if("Todo".equals(noteEntity.getClassify())){
 
+            if(null == noteEntity.getTodoStatus()){
+                noteEntity.setTodoStatus(1);
+            }else if (1 == noteEntity.getTodoStatus()){
+                noteEntity.setTodoStatus(0);
+            }else if (0 == noteEntity.getTodoStatus()){
+                noteEntity.setTodoStatus(1);
+            }
+            this.noteService.update(noteEntity);
+        }else{
+            throw new RuntimeException("Classify is not 'Todo'");
+        }
+        return Message.success(CommonConstants.STATUS_SUCCESS);
+
+    }
 
 }
 
