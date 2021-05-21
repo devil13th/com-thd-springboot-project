@@ -4,6 +4,7 @@ package com.thd.springboot.project.note.controller;
 import com.github.pagehelper.PageInfo;
 import com.thd.springboot.framework.constants.CommonConstants;
 import com.thd.springboot.framework.model.Message;
+import com.thd.springboot.framework.utils.MyStringUtils;
 import com.thd.springboot.framework.utils.UuidUtils;
 import com.thd.springboot.framework.web.controller.BasicController;
 import com.thd.springboot.project.note.entity.NoteEntity;
@@ -148,6 +149,21 @@ public class  NoteController extends BasicController {
             throw new RuntimeException("Classify is not 'Todo'");
         }
         return Message.success(CommonConstants.STATUS_SUCCESS);
+
+    }
+
+    @ResponseBody
+    @PostMapping("/finishTodo")
+    public Message finishTodo(@RequestBody NoteEntity entity){
+       if(MyStringUtils.isEmpty(entity.getNoteId())){
+           throw new RuntimeException("Note id is empty");
+       }
+       if(null == entity.getFinishTime()){
+           throw new RuntimeException("Finish time is empty");
+       }
+       entity.setTodoStatus(1);
+       this.noteService.update(entity);
+       return Message.success(CommonConstants.STATUS_SUCCESS);
 
     }
 
