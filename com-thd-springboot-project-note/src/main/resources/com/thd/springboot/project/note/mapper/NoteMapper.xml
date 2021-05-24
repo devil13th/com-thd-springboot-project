@@ -67,8 +67,11 @@
             <if test="content != null and content != '' ">
                 and note.`content` = #{content}
             </if>
-            <if test="expireDate != null ">
-                and note.`expire_date` = #{expireDate}
+            <if test="expireDateFrom != null ">
+                and note.`expire_date` >= #{expireDateFrom}
+            </if>
+            <if test="expireDateTo != null ">
+                and note.`expire_date` &lt;= #{expireDateTo}
             </if>
             <if test="alarmDays != null ">
                 and note.`alarm_days` = #{alarmDays}
@@ -79,11 +82,17 @@
             <if test="todoStatus != null ">
                 and note.`todo_status` = #{todoStatus}
             </if>
-            <if test="startTime != null ">
-                and note.`start_time` = #{startTime}
+            <if test="startTimeFrom != null ">
+                and note.`start_time` >= #{startTimeFrom}
             </if>
-            <if test="finishTime != null ">
-                and note.`finish_time` = #{finishTime}
+            <if test="startTimeTo != null ">
+                and note.`start_time` &lt;= #{startTimeTo}
+            </if>
+            <if test="finishTimeFrom != null ">
+                and note.`finish_time` >= #{finishTimeFrom}
+            </if>
+            <if test="finishTimeTo != null ">
+                and note.`finish_time` &lt;= #{finishTimeTo}
             </if>
 	</sql>
 
