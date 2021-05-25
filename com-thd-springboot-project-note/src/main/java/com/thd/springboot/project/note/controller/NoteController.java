@@ -9,9 +9,14 @@ import com.thd.springboot.framework.utils.UuidUtils;
 import com.thd.springboot.framework.web.controller.BasicController;
 import com.thd.springboot.project.note.entity.NoteEntity;
 import com.thd.springboot.project.note.service.NoteService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -22,7 +27,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/note")
 public class  NoteController extends BasicController {
-
+    Logger logger = LoggerFactory.getLogger(this.getClass());
 	@Autowired
 	private NoteService noteService;
 //    @Autowired
@@ -173,6 +178,35 @@ public class  NoteController extends BasicController {
        this.noteService.update(entity);
        return Message.success(CommonConstants.STATUS_SUCCESS);
 
+    }
+
+
+
+    /**
+     * 处理单个文件上传
+     * @param file
+     * @param keyword
+     * @return
+     */
+    @PostMapping("/singleUpload")
+    @ResponseBody
+    // url : http://127.0.0.1:8899/note/singleUpload
+    public String singleUpload(@RequestParam("file") MultipartFile file) {
+        if (file.isEmpty()) {
+            return "上传失败，请选择文件";
+        }
+
+        String fileName = file.getOriginalFilename();
+        String filePath = "D://deleteme/upload//";
+        File dest = new File(filePath + fileName);
+        try {
+            file.transferTo(dest);
+            logger.info("上传成功");
+            return "上传成功";
+        } catch (IOException e) {
+            logger.error(e.toString(), e);
+            return "上传失败!" + e.getMessage();
+        }
     }
 
 }

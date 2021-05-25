@@ -1,14 +1,14 @@
 package com.thd.springboot.project.note.entity;
 
-import lombok.Data;
-import com.thd.springboot.framework.entity.BasicEntity;
-import java.util.Date;
-import java.math.BigDecimal;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.thd.springboot.framework.entity.BasicEntity;
+import lombok.Data;
+
+import java.util.Date;
 
 
 @Data
-public class  NoteEntityParent extends BasicEntity {
+public class  NoteEntityParent extends BasicEntity<String> {
     // 
     private String noteId;
     // 
