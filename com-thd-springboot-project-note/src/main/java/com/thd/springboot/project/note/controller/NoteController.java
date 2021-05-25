@@ -132,6 +132,14 @@ public class  NoteController extends BasicController {
     }
 
     @ResponseBody
+    @RequestMapping("/queryNoteNoPage")
+    // url : http://127.0.0.1:8899/thd/cg/queryNoteNoPage
+    public Message queryNoteNoPage(NoteEntity entity){
+        List<NoteEntity> l = this.noteService.queryLike(entity);
+        return Message.success(l);
+    }
+
+    @ResponseBody
     @RequestMapping("/toggleNoteState/{id}")
     public Message toggleNoteState(@PathVariable String id){
         NoteEntity noteEntity = this.noteService.queryById(id);
