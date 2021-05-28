@@ -34,6 +34,11 @@ public class KnowLedgeServiceImpl implements KnowledgeService {
     };
 
 
+    public void modifyDoc(DocVO vo) throws Exception{
+        knowledgeEsService.reIndex(vo);
+    }
+
+
     public KnowledgeInfoEntity transerEsEntityToDbEntity(DocVO vo) throws Exception{
         KnowledgeInfoEntity dbEntity = new KnowledgeInfoEntity();
 

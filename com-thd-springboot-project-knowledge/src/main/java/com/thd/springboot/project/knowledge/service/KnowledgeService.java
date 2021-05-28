@@ -17,6 +17,13 @@ public interface KnowledgeService {
     public void createDoc(DocVO vo) throws Exception;
 
     /**
+     * 更新文档
+     * @param vo
+     * @throws Exception
+     */
+    public void modifyDoc(DocVO vo) throws Exception;
+
+    /**
      * 转换KnowledgeInfoEntity成DocVo
      * @param vo
      * @return

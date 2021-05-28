@@ -38,6 +38,7 @@ public interface KnowledgeEsService {
      * @return
      */
     public void index(DocVO docBean) throws Exception;
+    public void modify(DocVO docBean) throws Exception;
     public void reIndex(DocVO docBean) throws Exception;
 
 
@@ -53,5 +54,12 @@ public interface KnowledgeEsService {
      * @param path
      */
     public void indexThdTecFile(String path) ;
+
+    /**
+     * 根据id查询文档
+     * @param id
+     * @return
+     */
+    public DocVO loadDocById(String id);
 
 }

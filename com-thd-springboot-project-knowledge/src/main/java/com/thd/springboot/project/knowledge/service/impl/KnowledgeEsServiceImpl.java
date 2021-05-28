@@ -1,6 +1,7 @@
 package com.thd.springboot.project.knowledge.service.impl;
 
 import com.thd.springboot.framework.utils.MyFileUtils;
+import com.thd.springboot.framework.utils.MyStringUtils;
 import com.thd.springboot.project.knowledge.constant.KnowledgeConstants;
 import com.thd.springboot.project.knowledge.service.KnowledgeEsService;
 import com.thd.springboot.project.knowledge.vo.DocVO;
@@ -19,12 +20,14 @@ import org.elasticsearch.client.indices.CreateIndexResponse;
 import org.elasticsearch.client.indices.GetIndexRequest;
 import org.elasticsearch.client.indices.GetIndexResponse;
 import org.elasticsearch.common.text.Text;
+import org.elasticsearch.common.unit.TimeValue;
 import org.elasticsearch.common.xcontent.XContentType;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightField;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -82,6 +85,7 @@ public class KnowledgeEsServiceImpl implements KnowledgeEsService {
 
     public boolean deleteDocIndex() throws Exception{
         DeleteIndexRequest request = new DeleteIndexRequest(KnowledgeConstants.MODULE_NAME);
+        request.timeout(TimeValue.timeValueMinutes(1));
         AcknowledgedResponse response = esClient.indices().delete(request, RequestOptions.DEFAULT);
         return response.isAcknowledged();
     };
@@ -113,6 +117,7 @@ public class KnowledgeEsServiceImpl implements KnowledgeEsService {
         jsonMap.put("classify", docBean.getClassify());
         jsonMap.put("desc", docBean.getDesc());
         jsonMap.put("docType", docBean.getDocType());
+        jsonMap.put("filePath", docBean.getFilePath());
 
         // 索引内容
         indexRequest.source(jsonMap);
@@ -120,11 +125,43 @@ public class KnowledgeEsServiceImpl implements KnowledgeEsService {
         this.esClient.index(indexRequest,RequestOptions.DEFAULT);
     };
 
-    public void reIndex(DocVO docBean) throws Exception{
+
+    @Override
+    public void modify(DocVO docBean) throws Exception {
+        if(MyStringUtils.isEmpty(docBean.getId())){
+            throw new RuntimeException("Id can't be empty");
+        }
         UpdateRequest updateRequest = new UpdateRequest();
         updateRequest.index(KnowledgeConstants.MODULE_NAME);
         updateRequest.id(docBean.getId());
-//        this.esClient.update()
+
+        Map<String, Object> jsonMap = new HashMap<>();
+        jsonMap.put("title", docBean.getTitle());
+        jsonMap.put("classify", docBean.getClassify());
+        jsonMap.put("content", docBean.getContent());
+        jsonMap.put("desc", docBean.getDesc());
+
+        updateRequest.doc(jsonMap);
+        esClient.update(updateRequest,RequestOptions.DEFAULT);
+
+    }
+
+    public void reIndex(DocVO docBean) throws Exception{
+        if(MyStringUtils.isEmpty(docBean.getId())){
+            throw new RuntimeException("Id can't be empty");
+        }
+        UpdateRequest updateRequest = new UpdateRequest();
+        updateRequest.index(KnowledgeConstants.MODULE_NAME);
+        updateRequest.id(docBean.getId());
+
+        Map<String, Object> jsonMap = new HashMap<>();
+        jsonMap.put("title", docBean.getTitle());
+        jsonMap.put("classify", docBean.getClassify());
+        jsonMap.put("content", docBean.getContent());
+        jsonMap.put("desc", docBean.getDesc());
+
+        updateRequest.doc(jsonMap);
+        esClient.update(updateRequest,RequestOptions.DEFAULT);
     };
 
 
@@ -168,8 +205,9 @@ public class KnowledgeEsServiceImpl implements KnowledgeEsService {
             Map docMap = item.getSourceAsMap();
             Map<String, HighlightField> hlMap = item.getHighlightFields();
             doc.setId(item.getId());
-
-            doc.setTitle(docMap.get("title").toString());
+            doc.setTitle(null == docMap.get("title") ? null : docMap.get("title").toString());
+            doc.setClassify(null == docMap.get("classify") ? null : docMap.get("classify").toString());
+            doc.setFilePath(null == docMap.get("filePath") ? null : docMap.get("filePath").toString());
             doc.setHighLight(
                 Optional.ofNullable(hlMap.get("content")).map( hl -> {
                     return Stream.of(hl.getFragments()).map(txt -> txt.toString()).collect(Collectors.toList());
@@ -224,5 +262,35 @@ public class KnowledgeEsServiceImpl implements KnowledgeEsService {
                 this.indexThdTecFile(f.getAbsolutePath());
             }
         });
+    };
+
+
+    public DocVO loadDocById(String id){
+        SearchRequest sr = new SearchRequest(KnowledgeConstants.MODULE_NAME);
+        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+        searchSourceBuilder.query(QueryBuilders.idsQuery().addIds(id));
+        sr.source(searchSourceBuilder);
+        try{
+            SearchResponse response = esClient.search(sr,RequestOptions.DEFAULT);
+            SearchHit[] list = response.getHits().getHits();
+            if(list.length == 0 ){
+                throw new RuntimeException(String.format("Id[%s] Not Be Found",id));
+            }
+            SearchHit r = list[0];
+            Map<String,Object> map = r.getSourceAsMap();
+
+            DocVO arc = new DocVO();
+            arc.setId(r.getId());
+            arc.setClassify(null == map.get("classify") ? null : map.get("classify").toString());
+            arc.setTitle(null == map.get("title") ? null : map.get("title").toString());
+            arc.setContent(null == map.get("content") ? null : map.get("content").toString());
+            arc.setDesc(null == map.get("desc") ? null : map.get("desc").toString());
+            arc.setFilePath(null == map.get("filePath") ? null : map.get("filePath").toString());
+            return arc;
+        }catch(Exception e){
+            throw new RuntimeException(e.getMessage());
+        }
+
+
     };
 }
