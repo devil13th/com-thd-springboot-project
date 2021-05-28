@@ -4,7 +4,6 @@ import com.thd.springboot.framework.constants.CommonConstants;
 import com.thd.springboot.framework.model.Message;
 import com.thd.springboot.framework.web.controller.BasicController;
 import com.thd.springboot.project.knowledge.service.KnowledgeEsService;
-import com.thd.springboot.project.knowledge.service.KnowledgeInfoService;
 import com.thd.springboot.project.knowledge.service.KnowledgeService;
 import com.thd.springboot.project.knowledge.vo.DocVO;
 import com.thd.springboot.project.knowledge.vo.SearchVO;
@@ -45,7 +44,6 @@ public class KnowledgeController  extends BasicController {
 
         return Message.success("SUCCESS...");
     }
-
 
 
     @RequestMapping("/createDocIndex")
