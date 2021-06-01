@@ -176,7 +176,6 @@ public class KnowledgeEsServiceImpl implements KnowledgeEsService {
         );
 
 
-
         // 高亮
         HighlightBuilder highlightBuilder = new HighlightBuilder();
 
@@ -193,6 +192,8 @@ public class KnowledgeEsServiceImpl implements KnowledgeEsService {
 
 
         searchSourceBuilder.highlighter(highlightBuilder);
+
+
 
 
 

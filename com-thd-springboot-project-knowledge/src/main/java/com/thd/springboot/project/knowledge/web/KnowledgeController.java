@@ -4,6 +4,8 @@ import com.thd.springboot.framework.constants.CommonConstants;
 import com.thd.springboot.framework.model.Message;
 import com.thd.springboot.framework.utils.MyStringUtils;
 import com.thd.springboot.framework.web.controller.BasicController;
+import com.thd.springboot.project.knowledge.entity.Product;
+import com.thd.springboot.project.knowledge.mapper.ProductDao;
 import com.thd.springboot.project.knowledge.service.KnowledgeEsService;
 import com.thd.springboot.project.knowledge.service.KnowledgeService;
 import com.thd.springboot.project.knowledge.vo.DocVO;
@@ -12,7 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * com.thd.springboot.project.knowledge.web.KnowledgeController
@@ -27,11 +31,25 @@ public class KnowledgeController  extends BasicController {
     private KnowledgeEsService knowledgeEsService;
     @Autowired
     private KnowledgeService knowledgeService;
+    @Autowired
+    private ProductDao productDao;
     @RequestMapping("/test")
     @ResponseBody
     // url : http://127.0.0.1:2348/knowledge/test
     public Message test(){
-        return Message.success("SUCCESS...");
+//        Product p = new Product();
+//        p.setCategory("aaa");
+//        p.setCreateTime(new Date());
+//        p.setImages("asdfasdf img");
+//        p.setPrice(5.2);
+//        p.setTitle("测试数据");
+//        productDao.save(p);
+
+
+        Product p = productDao.findById("TO9GwHkBcxFugCnOCMZM").get();
+        p.setTitle("update title");
+        this.productDao.save(p);
+        return Message.success(p);
     }
 
     @RequestMapping("/createDoc")
