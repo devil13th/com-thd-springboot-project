@@ -15,7 +15,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  **/
 @SpringBootApplication(scanBasePackages = "com.thd.*")
 @EnableSwagger2Doc
-@EnableSwagger2
 public class KnowledgeApplication {
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
         return builder.sources(this.getClass());

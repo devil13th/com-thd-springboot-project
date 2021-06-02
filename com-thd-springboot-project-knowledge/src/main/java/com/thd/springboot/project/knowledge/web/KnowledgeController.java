@@ -10,10 +10,18 @@ import com.thd.springboot.project.knowledge.service.KnowledgeEsService;
 import com.thd.springboot.project.knowledge.service.KnowledgeService;
 import com.thd.springboot.project.knowledge.vo.DocVO;
 import com.thd.springboot.project.knowledge.vo.SearchVO;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.Authorization;
+import io.swagger.annotations.ResponseHeader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import sun.misc.BASE64Decoder;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -24,6 +32,7 @@ import java.util.Optional;
  * @author: wanglei62
  * @DATE: 2021/5/12 11:34
  **/
+@Api(value="Knowledge 总接口" ,tags = "Knowledge 总接口.")
 @Controller
 @RequestMapping("/knowledge")
 public class KnowledgeController  extends BasicController {
@@ -33,9 +42,52 @@ public class KnowledgeController  extends BasicController {
     private KnowledgeService knowledgeService;
     @Autowired
     private ProductDao productDao;
-    @RequestMapping("/test")
+
+
+    public static String decode(String s) {
+        if (s == null)
+            return null;
+        BASE64Decoder decoder = new BASE64Decoder();
+        try {
+            byte[] b = decoder.decodeBuffer(s);
+            return new String(b,"UTF-8");
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+
+    // url : http://127.0.0.1:2348/knowledge/testAuth?sss=22222
+    @RequestMapping(value="/testAuth",method = RequestMethod.GET)
+    public void testAuth(HttpServletResponse res , HttpServletRequest req) throws Exception{
+        System.out.println(req.getParameter("sss"));
+        res.getWriter().write("aaabbcc");
+
+        // 获取basic auth用户名密码
+        String auth = req.getHeader("Authorization");
+        if(MyStringUtils.isNotEmpty(auth)){
+
+            System.out.println("auth :" + auth);
+            auth = auth.substring(6, auth.length());
+            System.out.println("auth encoded in base64 is " + decode(auth));
+
+            if(decode(auth).equals("thd:123456")){
+                response.getWriter().write("Login Success");
+                return ;
+            }
+        }
+
+        //弹出 basic 认证
+        res.setHeader("WWW-Authenticate","Basic Realm=\"knowledge1\"");
+        res.setStatus(401);
+    }
+
+
+    @RequestMapping(value="/test",method = RequestMethod.GET)
     @ResponseBody
     // url : http://127.0.0.1:2348/knowledge/test
+    @ApiOperation(value="测试接口")
+    @ResponseHeader(name="head1",description="response head conf")
     public Message test(){
 //        Product p = new Product();
 //        p.setCategory("aaa");
@@ -52,6 +104,7 @@ public class KnowledgeController  extends BasicController {
         return Message.success(p);
     }
 
+    @ApiOperation(value="创建文档")
     @RequestMapping("/createDoc")
     @ResponseBody
     // url : http://127.0.0.1:2348/knowledge/createDoc
