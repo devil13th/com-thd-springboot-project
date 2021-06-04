@@ -71,10 +71,11 @@ public class KnowledgeController  extends BasicController {
             auth = auth.substring(6, auth.length());
             System.out.println("auth encoded in base64 is " + decode(auth));
 
-            if(decode(auth).equals("thd:123456")){
-                response.getWriter().write("Login Success");
-                return ;
-            }
+
+//            if(decode(auth).equals("thd:123456")){
+//                response.getWriter().write("Login Success");
+//                return ;
+//            }
         }
 
         //弹出 basic 认证
