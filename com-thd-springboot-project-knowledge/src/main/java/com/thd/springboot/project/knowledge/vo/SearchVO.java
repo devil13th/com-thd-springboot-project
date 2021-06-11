@@ -8,6 +8,17 @@ package com.thd.springboot.project.knowledge.vo;
  **/
 public class SearchVO extends DocVO {
     private String keyWords;
+    private String classify;
+
+    @Override
+    public String getClassify() {
+        return classify;
+    }
+
+    @Override
+    public void setClassify(String classify) {
+        this.classify = classify;
+    }
 
     public String getKeyWords() {
         return keyWords;

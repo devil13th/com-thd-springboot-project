@@ -22,6 +22,8 @@ import org.elasticsearch.client.indices.GetIndexResponse;
 import org.elasticsearch.common.text.Text;
 import org.elasticsearch.common.unit.TimeValue;
 import org.elasticsearch.common.xcontent.XContentType;
+import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.Operator;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
@@ -169,11 +171,39 @@ public class KnowledgeEsServiceImpl implements KnowledgeEsService {
     public List<DocVO> search(SearchVO vo) throws Exception{
         SearchRequest searchRequest = new SearchRequest(KnowledgeConstants.MODULE_NAME);
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
-        searchSourceBuilder.query(QueryBuilders.boolQuery()
-                .should(QueryBuilders.matchQuery("content",vo.getKeyWords()))
-                .should(QueryBuilders.matchQuery("title",vo.getKeyWords()))
-                .should(QueryBuilders.matchQuery("desc",vo.getKeyWords()))
-        );
+
+
+        BoolQueryBuilder condition =  QueryBuilders.boolQuery();
+        if(MyStringUtils.isNotEmpty(vo.getClassify())){
+            condition
+                .must(QueryBuilders.matchQuery("classify",vo.getClassify()))
+                .must(
+                    QueryBuilders.boolQuery()
+                        .should(QueryBuilders.matchQuery("content",vo.getKeyWords()).operator(Operator.AND))
+                        .should(QueryBuilders.matchQuery("title",vo.getKeyWords()).operator(Operator.AND))
+                        .should(QueryBuilders.matchQuery("desc",vo.getKeyWords()).operator(Operator.AND))
+                );
+
+        }else{
+            condition.must(
+                QueryBuilders.boolQuery()
+                    .should(QueryBuilders.matchQuery("content",vo.getKeyWords()).operator(Operator.AND))
+                    .should(QueryBuilders.matchQuery("title",vo.getKeyWords()).operator(Operator.AND))
+                    .should(QueryBuilders.matchQuery("desc",vo.getKeyWords()).operator(Operator.AND))
+            );
+        }
+
+        searchSourceBuilder.query(condition);
+//        searchSourceBuilder.query(
+//                QueryBuilders.boolQuery()
+//                        .must(QueryBuilders.matchQuery("classify",vo.getClassify()))
+//                        .must(
+//                                QueryBuilders.boolQuery().should(QueryBuilders.matchQuery("content",vo.getKeyWords()).operator(Operator.AND))
+//                                .should(QueryBuilders.matchQuery("title",vo.getKeyWords()).operator(Operator.AND))
+//                                .should(QueryBuilders.matchQuery("desc",vo.getKeyWords()).operator(Operator.AND))
+//                        )
+//
+//        );
 
 
         // 高亮
