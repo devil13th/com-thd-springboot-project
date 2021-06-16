@@ -172,29 +172,39 @@ public class KnowledgeEsServiceImpl implements KnowledgeEsService {
         SearchRequest searchRequest = new SearchRequest(KnowledgeConstants.MODULE_NAME);
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
 
+        if(MyStringUtils.isNotEmpty(vo.getClassify()) || MyStringUtils.isNotEmpty(vo.getKeyWords())) {
+            BoolQueryBuilder condition = QueryBuilders.boolQuery();
 
-        BoolQueryBuilder condition =  QueryBuilders.boolQuery();
-        if(MyStringUtils.isNotEmpty(vo.getClassify())){
-            condition
-                .must(QueryBuilders.matchQuery("classify",vo.getClassify()))
-                .must(
-                    QueryBuilders.boolQuery()
-                        .should(QueryBuilders.matchQuery("content",vo.getKeyWords()).operator(Operator.AND))
-                        .should(QueryBuilders.matchQuery("title",vo.getKeyWords()).operator(Operator.AND))
-                        .should(QueryBuilders.matchQuery("desc",vo.getKeyWords()).operator(Operator.AND))
+
+            if (MyStringUtils.isNotEmpty(vo.getClassify())) {
+//                condition.must(QueryBuilders.matchQuery("classify", vo.getClassify()));
+                condition.filter(QueryBuilders.matchQuery("classify", vo.getClassify()));
+
+            }
+
+            if(MyStringUtils.isNotEmpty(vo.getKeyWords())){
+                condition.must(
+                        QueryBuilders.boolQuery()
+                                .should(QueryBuilders.matchQuery("content", vo.getKeyWords()).operator(Operator.AND))
+                                .should(QueryBuilders.matchQuery("title", vo.getKeyWords()).operator(Operator.AND))
+                                .should(QueryBuilders.matchQuery("desc", vo.getKeyWords()).operator(Operator.AND))
                 );
+            }
+//            else {
+//                condition.must(
+//                        QueryBuilders.boolQuery()
+//                                .should(QueryBuilders.matchQuery("content", vo.getKeyWords()).operator(Operator.AND))
+//                                .should(QueryBuilders.matchQuery("title", vo.getKeyWords()).operator(Operator.AND))
+//                                .should(QueryBuilders.matchQuery("desc", vo.getKeyWords()).operator(Operator.AND))
+//                );
+//            }
+            System.out.println(condition);
+            searchSourceBuilder.query(condition);
 
-        }else{
-            condition.must(
-                QueryBuilders.boolQuery()
-                    .should(QueryBuilders.matchQuery("content",vo.getKeyWords()).operator(Operator.AND))
-                    .should(QueryBuilders.matchQuery("title",vo.getKeyWords()).operator(Operator.AND))
-                    .should(QueryBuilders.matchQuery("desc",vo.getKeyWords()).operator(Operator.AND))
-            );
-        }
 
-        searchSourceBuilder.query(condition);
-//        searchSourceBuilder.query(
+
+
+            //        searchSourceBuilder.query(
 //                QueryBuilders.boolQuery()
 //                        .must(QueryBuilders.matchQuery("classify",vo.getClassify()))
 //                        .must(
@@ -206,22 +216,27 @@ public class KnowledgeEsServiceImpl implements KnowledgeEsService {
 //        );
 
 
-        // 高亮
-        HighlightBuilder highlightBuilder = new HighlightBuilder();
+            // 高亮
+            HighlightBuilder highlightBuilder = new HighlightBuilder();
 
-        highlightBuilder.preTags("<b style='color:red'>");
-        highlightBuilder.postTags("</b>");
-
-
-        HighlightBuilder.Field highlightTitle = new HighlightBuilder.Field("title");
-        highlightBuilder.field(highlightTitle);
-
-        HighlightBuilder.Field highlightContent = new HighlightBuilder.Field("content");
-        highlightBuilder.field(highlightContent);
+            highlightBuilder.preTags("<b style='color:red'>");
+            highlightBuilder.postTags("</b>");
 
 
+            HighlightBuilder.Field highlightTitle = new HighlightBuilder.Field("title");
+            highlightBuilder.field(highlightTitle);
 
-        searchSourceBuilder.highlighter(highlightBuilder);
+            HighlightBuilder.Field highlightContent = new HighlightBuilder.Field("content");
+            highlightBuilder.field(highlightContent);
+
+
+
+            searchSourceBuilder.highlighter(highlightBuilder);
+
+
+        }
+
+
 
 
 
