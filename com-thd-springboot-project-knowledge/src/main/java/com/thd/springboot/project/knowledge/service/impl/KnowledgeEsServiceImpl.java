@@ -277,7 +277,6 @@ public class KnowledgeEsServiceImpl implements KnowledgeEsService {
         String folderPath = path;
         File folder = new File(folderPath);
         String[] folderList = folder.list();
-        String[] classifyArrays = new String[]{"REACT","JS","JVM","VUE","JAVA"};
         Stream.of(folderList).forEach( item -> {
 
             File f = new File(folder.getAbsolutePath() + "\\" + item);
@@ -295,8 +294,7 @@ public class KnowledgeEsServiceImpl implements KnowledgeEsService {
                         doc.setContent(content);
                         doc.setFilePath(f.getAbsolutePath());
 
-                        int c = new Random().nextInt(3);
-                        doc.setClassify(classifyArrays[c]);
+                        doc.setClassify("THD TEC");
                         try {
                            this.index(doc);
                         } catch (Exception e) {
