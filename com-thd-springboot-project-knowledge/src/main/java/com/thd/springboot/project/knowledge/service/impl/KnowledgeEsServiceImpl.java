@@ -327,6 +327,7 @@ public class KnowledgeEsServiceImpl implements KnowledgeEsService {
             doc.setTitle(null == docMap.get("title") ? null : docMap.get("title").toString());
             doc.setClassify(null == docMap.get("classify") ? null : docMap.get("classify").toString());
             doc.setFilePath(null == docMap.get("filePath") ? null : docMap.get("filePath").toString());
+            doc.setDesc(null == docMap.get("desc") ? null : docMap.get("desc").toString());
             doc.setHighLight(
                 Optional.ofNullable(hlMap.get("content")).map( hl -> {
                     return Stream.of(hl.getFragments()).map(txt -> txt.toString()).collect(Collectors.toList());
