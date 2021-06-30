@@ -2,11 +2,14 @@ package com.thd.springboot.project.knowledge.service.impl;
 
 import com.thd.springboot.framework.utils.MyFileUtils;
 import com.thd.springboot.framework.utils.MyStringUtils;
+import com.thd.springboot.framework.utils.UuidUtils;
 import com.thd.springboot.project.knowledge.constant.KnowledgeConstants;
 import com.thd.springboot.project.knowledge.service.KnowledgeEsService;
+import com.thd.springboot.project.knowledge.vo.ClassifyVO;
 import com.thd.springboot.project.knowledge.vo.DocVO;
 import com.thd.springboot.project.knowledge.vo.SearchVO;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
+import org.elasticsearch.action.bulk.BulkRequest;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
@@ -22,9 +25,8 @@ import org.elasticsearch.client.indices.GetIndexResponse;
 import org.elasticsearch.common.text.Text;
 import org.elasticsearch.common.unit.TimeValue;
 import org.elasticsearch.common.xcontent.XContentType;
-import org.elasticsearch.index.query.BoolQueryBuilder;
-import org.elasticsearch.index.query.Operator;
-import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.index.query.*;
+import org.elasticsearch.index.reindex.DeleteByQueryRequest;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
@@ -65,7 +67,7 @@ public class KnowledgeEsServiceImpl implements KnowledgeEsService {
                     "            \"title\" : { \"type\" : \"text\",\"analyzer\":\"ik_max_word\",\"search_analyzer\":\"ik_smart\" },\n" +
                     "            \"desc\" : { \"type\" : \"text\" ,\"analyzer\":\"ik_max_word\",\"search_analyzer\":\"ik_smart\"},\n" +
                     "            \"docType\" : { \"type\" : \"keyword\" },\n" +
-                    "            \"classify\" : { \"type\" : \"text\" },\n" +
+                    "            \"classify\" : { \"type\" : \"keyword\" },\n" +
                     "            \"content\" : { \"type\" : \"text\" ,\"analyzer\":\"ik_max_word\",\"search_analyzer\":\"ik_smart\"}\n" +
                     "        }\n" +
                     "    },\n" +
@@ -94,7 +96,7 @@ public class KnowledgeEsServiceImpl implements KnowledgeEsService {
 
 
     public boolean existIndex(String index) throws Exception{
-        GetIndexRequest getIndexRequest = new GetIndexRequest(KnowledgeConstants.MODULE_NAME);
+        GetIndexRequest getIndexRequest = new GetIndexRequest(index);
         return esClient.indices().exists(getIndexRequest, RequestOptions.DEFAULT);
     };
 
@@ -108,6 +110,79 @@ public class KnowledgeEsServiceImpl implements KnowledgeEsService {
         return Boolean.FALSE ;
     }
 
+    public boolean createClassifyIndex() throws Exception{
+        if(!this.existIndex(KnowledgeConstants.CLASSIFY_INDEX_NAME)) {
+            CreateIndexRequest createIndexRequest = new CreateIndexRequest(KnowledgeConstants.CLASSIFY_INDEX_NAME);
+
+            // 使用json设置索引内容
+            createIndexRequest.source("{\n" +
+                    "    \"settings\" : {\n" +
+                    "        \"number_of_shards\" : 2,\n" +
+                    "        \"number_of_replicas\" : 2\n" +
+                    "    },\n" +
+                    "    \"mappings\" : {\n" +
+                    "        \"properties\" : {\n" +
+                    "            \"code\" : { \"type\" : \"keyword\" },\n" +
+                    "            \"name\" : { \"type\" : \"keyword\" }\n" +
+                    "        }\n" +
+                    "    },\n" +
+                    "    \"aliases\" : {\n" +
+                    "        \"classify_\" : {}\n" +
+                    "    }\n" +
+                    "}", XContentType.JSON);
+
+            esClient.indices().create(createIndexRequest, RequestOptions.DEFAULT);
+        }
+        return Boolean.TRUE;
+    };
+
+
+    public boolean initClassifyData() throws Exception{
+        BulkRequest request = new BulkRequest();
+        String[] classifyAttr = new String[]{"THD TEC","STANDAR CODE","NOTE","ARTICLE"};
+        Stream.of(classifyAttr).forEach( classify -> {
+            IndexRequest indexRequest = new IndexRequest(KnowledgeConstants.CLASSIFY_INDEX_NAME);
+            ClassifyVO vo = new ClassifyVO();
+            String id = UuidUtils.uuid();
+            vo.setId(id);
+            vo.setCode(classify);
+            vo.setName(classify);
+
+
+            Map<String, Object> jsonMap = new HashMap<>();
+            jsonMap.put("code", classify);
+            jsonMap.put("name",classify);
+
+            // 索引内容
+            indexRequest.source(jsonMap);
+            request.add(indexRequest);
+        });
+        esClient.bulk(request,RequestOptions.DEFAULT);
+        return Boolean.TRUE;
+    };
+
+    public List<ClassifyVO> queryAllClassify() throws Exception{
+        SearchRequest searchRequest = new SearchRequest(KnowledgeConstants.CLASSIFY_INDEX_NAME);
+        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+        QueryBuilder queryBuilder = QueryBuilders.matchAllQuery();
+        searchSourceBuilder.query(queryBuilder);
+        searchRequest.source(searchSourceBuilder);
+        SearchResponse searchResponse = esClient.search(searchRequest,RequestOptions.DEFAULT);
+        SearchHit[] result = searchResponse.getHits().getHits();
+
+        List<ClassifyVO> list = Stream.of(result).map(item -> {
+            ClassifyVO doc = new ClassifyVO();
+            Map docMap = item.getSourceAsMap();
+
+            doc.setId(item.getId());
+            doc.setCode(null == docMap.get("code") ? null : docMap.get("code").toString());
+            doc.setName(null == docMap.get("name") ? null : docMap.get("name").toString());
+
+            return doc;
+        }).collect(Collectors.toList());
+
+        return list;
+    }
 
     public void index(DocVO docBean) throws Exception{
         IndexRequest indexRequest = new IndexRequest(KnowledgeConstants.MODULE_NAME);
@@ -177,9 +252,7 @@ public class KnowledgeEsServiceImpl implements KnowledgeEsService {
 
 
             if (MyStringUtils.isNotEmpty(vo.getClassify())) {
-//                condition.must(QueryBuilders.matchQuery("classify", vo.getClassify()));
-                condition.filter(QueryBuilders.matchQuery("classify", vo.getClassify()));
-
+                condition.must(QueryBuilders.matchQuery("classify", vo.getClassify()));
             }
 
             if(MyStringUtils.isNotEmpty(vo.getKeyWords())){
@@ -307,6 +380,29 @@ public class KnowledgeEsServiceImpl implements KnowledgeEsService {
             }
         });
     };
+
+
+    /**
+     * 全部重新索引thd tec文章
+     * @param path
+     */
+    public void reIndexThdTecFile(String path) throws Exception{
+        // 先清除所有THD TEC分类的文章
+        this.deleteIndexThdTecDoc();
+        // 重新索引
+        this.indexThdTecFile(path);
+    };
+
+    /**
+     * 删除thd tec类文章 - 同步
+     */
+    public void deleteIndexThdTecDoc() throws Exception{
+        DeleteByQueryRequest deleteByQueryRequest = new DeleteByQueryRequest(KnowledgeConstants.MODULE_NAME);
+        deleteByQueryRequest.setQuery(new TermQueryBuilder("classify", "THD TEC"));
+        deleteByQueryRequest.setSlices(5); // 开启多少进程执行删除任务
+        esClient.deleteByQuery(deleteByQueryRequest,RequestOptions.DEFAULT);
+    };
+
 
 
     public DocVO loadDocById(String id){

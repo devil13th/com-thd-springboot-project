@@ -1,2 +1,0 @@
-(this["webpackJsonpcom-thd-springboot-project-knowledge-client"]=this["webpackJsonpcom-thd-springboot-project-knowledge-client"]||[]).push([[413],{607:function(t,e){Prism.languages.t4=Prism.languages["t4-cs"]=Prism.languages["t4-templating"].createT4("csharp")}}]);
-//# sourceMappingURL=413.4270a634.chunk.js.map

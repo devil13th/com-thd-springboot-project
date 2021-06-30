@@ -8,6 +8,7 @@ import com.thd.springboot.project.knowledge.entity.Product;
 import com.thd.springboot.project.knowledge.mapper.ProductDao;
 import com.thd.springboot.project.knowledge.service.KnowledgeEsService;
 import com.thd.springboot.project.knowledge.service.KnowledgeService;
+import com.thd.springboot.project.knowledge.vo.ClassifyVO;
 import com.thd.springboot.project.knowledge.vo.DocVO;
 import com.thd.springboot.project.knowledge.vo.SearchVO;
 import io.swagger.annotations.Api;
@@ -133,6 +134,54 @@ public class KnowledgeController  extends BasicController {
 
     }
 
+
+    @RequestMapping("/createClassifyIndex")
+    @ResponseBody
+    // url : http://127.0.0.1:2348/knowledge/createClassifyIndex
+    public Message createClassifyIndex() {
+        try {
+            this.knowledgeEsService.createClassifyIndex();
+            return Message.success(CommonConstants.STATUS_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Message.error("-1",e.getMessage());
+        }
+    }
+
+
+
+    @RequestMapping("/initClassifyData")
+    @ResponseBody
+    // url : http://127.0.0.1:2348/knowledge/initClassifyData
+    public Message initClassifyData() {
+        try {
+            this.knowledgeEsService.initClassifyData();
+            return Message.success(CommonConstants.STATUS_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Message.error("-1",e.getMessage());
+        }
+    }
+
+
+    @RequestMapping("/queryAllClassify")
+    @ResponseBody
+    // url : http://127.0.0.1:2348/knowledge/queryAllClassify
+    public Message queryAllClassify() {
+        try {
+            List<ClassifyVO> l = this.knowledgeEsService.queryAllClassify();
+            return Message.success(l);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Message.error("-1",e.getMessage());
+        }
+    }
+
+
+
+
+
+
     @RequestMapping(value="/search",method = RequestMethod.POST)
     @ResponseBody
     // url : http://127.0.0.1:2348/knowledge/search
@@ -160,6 +209,22 @@ public class KnowledgeController  extends BasicController {
         this.knowledgeEsService.indexThdTecFile(folderPath);
         return Message.success(CommonConstants.STATUS_SUCCESS);
     }
+    @RequestMapping("/reIndexThdTecFile")
+    @ResponseBody
+    // url : http://127.0.0.1:2348/knowledge/reIndexThdTecFile
+    public Message reIndexThdTecFile() throws Exception{
+        String folderPath = "D:\\devil13th\\Thirdteendevil\\Thirdteendevil\\resource\\tec";
+        this.knowledgeEsService.reIndexThdTecFile(folderPath);
+        return Message.success(CommonConstants.STATUS_SUCCESS);
+    }
+    @RequestMapping("/deleteIndexThdTecDoc")
+    @ResponseBody
+    // url : http://127.0.0.1:2348/knowledge/deleteIndexThdTecDoc
+    public Message deleteIndexThdTecDoc() throws Exception{
+        this.knowledgeEsService.deleteIndexThdTecDoc();
+        return Message.success(CommonConstants.STATUS_SUCCESS);
+    }
+
 
 
     @RequestMapping(value="/deleteDocIndex",method = RequestMethod.DELETE)
@@ -168,4 +233,8 @@ public class KnowledgeController  extends BasicController {
         this.knowledgeEsService.deleteDocIndex();
         return Message.success(CommonConstants.STATUS_SUCCESS);
     }
+
+
+
+
 }

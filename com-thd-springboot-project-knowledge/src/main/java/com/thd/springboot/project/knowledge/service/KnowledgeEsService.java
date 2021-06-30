@@ -1,5 +1,6 @@
 package com.thd.springboot.project.knowledge.service;
 
+import com.thd.springboot.project.knowledge.vo.ClassifyVO;
 import com.thd.springboot.project.knowledge.vo.DocVO;
 import com.thd.springboot.project.knowledge.vo.SearchVO;
 
@@ -26,10 +27,21 @@ public interface KnowledgeEsService {
     public boolean existIndex(String indexName) throws Exception;
 
 
+    /**
+     * 创建分类字典
+     */
+    public boolean createClassifyIndex() throws Exception;
 
+    /**
+     * 初始化分类字典数据
+     */
+    public boolean initClassifyData() throws Exception;
 
-
-
+    /**
+     * 获取classify字典
+     * @return
+     */
+    public List<ClassifyVO> queryAllClassify() throws Exception;
 
 
     /**
@@ -54,6 +66,18 @@ public interface KnowledgeEsService {
      * @param path
      */
     public void indexThdTecFile(String path) ;
+
+
+    /**
+     * 全部重新索引thd tec文章
+     * @param path
+     */
+    public void reIndexThdTecFile(String path) throws Exception;
+
+    /**
+     * 删除thd tec类文章
+     */
+    public void deleteIndexThdTecDoc() throws Exception;
 
     /**
      * 根据id查询文档

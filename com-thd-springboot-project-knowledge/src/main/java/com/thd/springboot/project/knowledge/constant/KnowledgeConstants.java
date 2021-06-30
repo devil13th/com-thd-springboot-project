@@ -8,4 +8,6 @@ package com.thd.springboot.project.knowledge.constant;
  **/
 public class KnowledgeConstants {
     public static final String MODULE_NAME = "knowledge";
+    public static final String CLASSIFY_INDEX_NAME = "classify";
+
 }

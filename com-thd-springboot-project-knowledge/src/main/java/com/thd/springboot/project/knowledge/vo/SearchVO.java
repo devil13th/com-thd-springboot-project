@@ -9,6 +9,7 @@ package com.thd.springboot.project.knowledge.vo;
 public class SearchVO extends DocVO {
     private String keyWords;
     private String classify;
+    private String type;
 
     @Override
     public String getClassify() {
@@ -26,5 +27,14 @@ public class SearchVO extends DocVO {
 
     public void setKeyWords(String keyWords) {
         this.keyWords = keyWords;
+    }
+
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
