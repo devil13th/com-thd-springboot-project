@@ -261,7 +261,7 @@ public class KnowledgeEsServiceImpl implements KnowledgeEsService {
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
 
         // 分页信息
-        searchSourceBuilder.from(vo.getPage());
+        searchSourceBuilder.from(0);
         searchSourceBuilder.size(vo.getPageSize());
 
         if(MyStringUtils.isNotEmpty(vo.getClassify()) || MyStringUtils.isNotEmpty(vo.getKeyWords())) {
@@ -336,6 +336,9 @@ public class KnowledgeEsServiceImpl implements KnowledgeEsService {
 
 
         SearchResponse searchResponse = esClient.search(searchRequest,RequestOptions.DEFAULT);
+
+
+        System.out.println(searchResponse);
         SearchHit[] result = searchResponse.getHits().getHits();
 
         List<DocVO> list = Stream.of(result).map(item -> {
