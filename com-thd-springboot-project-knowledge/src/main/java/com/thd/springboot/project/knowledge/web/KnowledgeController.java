@@ -250,6 +250,17 @@ public class KnowledgeController  extends BasicController {
     }
 
 
+    @RequestMapping(value="/deleteClassifyIndex",method = RequestMethod.DELETE)
+    @ResponseBody
+    public Message deleteClassifyIndex() throws Exception{
+        this.knowledgeEsService.deleteClassifyIndex();
+        return Message.success(CommonConstants.STATUS_SUCCESS);
+    }
+
+
+
+
+
 
 
 }

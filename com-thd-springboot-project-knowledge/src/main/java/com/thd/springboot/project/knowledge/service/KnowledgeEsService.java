@@ -38,6 +38,13 @@ public interface KnowledgeEsService {
     public boolean initClassifyData() throws Exception;
 
     /**
+     * 删除 classify 索引
+     * @return
+     * @throws Exception
+     */
+    public boolean deleteClassifyIndex() throws Exception;
+
+    /**
      * 创建classify
      * @param classify
      * @return

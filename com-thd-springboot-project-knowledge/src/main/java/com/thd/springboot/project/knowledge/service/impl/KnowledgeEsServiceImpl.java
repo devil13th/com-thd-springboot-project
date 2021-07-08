@@ -84,14 +84,20 @@ public class KnowledgeEsServiceImpl implements KnowledgeEsService {
     }
 
 
-
-
-
-    public boolean deleteDocIndex() throws Exception{
-        DeleteIndexRequest request = new DeleteIndexRequest(KnowledgeConstants.MODULE_NAME);
+    public boolean removeIndex(String indexName) throws Exception{
+        DeleteIndexRequest request = new DeleteIndexRequest(indexName);
         request.timeout(TimeValue.timeValueMinutes(1));
         AcknowledgedResponse response = esClient.indices().delete(request, RequestOptions.DEFAULT);
         return response.isAcknowledged();
+    };
+
+
+    public boolean deleteDocIndex() throws Exception{
+//        DeleteIndexRequest request = new DeleteIndexRequest(KnowledgeConstants.MODULE_NAME);
+//        request.timeout(TimeValue.timeValueMinutes(1));
+//        AcknowledgedResponse response = esClient.indices().delete(request, RequestOptions.DEFAULT);
+//        return response.isAcknowledged();
+        return this.removeIndex(KnowledgeConstants.MODULE_NAME);
     };
 
 
@@ -137,9 +143,19 @@ public class KnowledgeEsServiceImpl implements KnowledgeEsService {
     };
 
 
+    public boolean deleteClassifyIndex() throws Exception{
+//        DeleteIndexRequest request = new DeleteIndexRequest(KnowledgeConstants.MODULE_NAME);
+//        request.timeout(TimeValue.timeValueMinutes(1));
+//        AcknowledgedResponse response = esClient.indices().delete(request, RequestOptions.DEFAULT);
+//        return response.isAcknowledged();
+        return this.removeIndex(KnowledgeConstants.CLASSIFY_INDEX_NAME);
+    };
+
+
     public boolean initClassifyData() throws Exception{
+
         BulkRequest request = new BulkRequest();
-        String[] classifyAttr = new String[]{"THD TEC","STANDAR CODE","NOTE","ARTICLE"};
+        String[] classifyAttr = new String[]{"THD TEC","STANDAR CODE","NOTE","ARTICLE","DOC","SQL"};
         Stream.of(classifyAttr).forEach( classify -> {
             IndexRequest indexRequest = new IndexRequest(KnowledgeConstants.CLASSIFY_INDEX_NAME);
             ClassifyVO vo = new ClassifyVO();
