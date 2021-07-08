@@ -38,6 +38,14 @@ public interface KnowledgeEsService {
     public boolean initClassifyData() throws Exception;
 
     /**
+     * 创建classify
+     * @param classify
+     * @return
+     * @throws Exception
+     */
+    public boolean createClassify(String classify) throws Exception;
+
+    /**
      * 获取classify字典
      * @return
      */

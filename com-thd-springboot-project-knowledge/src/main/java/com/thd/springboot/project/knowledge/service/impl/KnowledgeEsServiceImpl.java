@@ -161,6 +161,19 @@ public class KnowledgeEsServiceImpl implements KnowledgeEsService {
         return Boolean.TRUE;
     };
 
+
+    public boolean createClassify(String classify) throws Exception{
+        IndexRequest indexRequest = new IndexRequest(KnowledgeConstants.CLASSIFY_INDEX_NAME);
+
+        Map<String, Object> jsonMap = new HashMap<>();
+        jsonMap.put("code", classify);
+        jsonMap.put("name",classify);
+
+        indexRequest.source(jsonMap);
+        this.esClient.index(indexRequest,RequestOptions.DEFAULT);
+        return Boolean.TRUE;
+    };
+
     public List<ClassifyVO> queryAllClassify() throws Exception{
         SearchRequest searchRequest = new SearchRequest(KnowledgeConstants.CLASSIFY_INDEX_NAME);
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
@@ -247,6 +260,10 @@ public class KnowledgeEsServiceImpl implements KnowledgeEsService {
         SearchRequest searchRequest = new SearchRequest(KnowledgeConstants.MODULE_NAME);
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
 
+        // 分页信息
+        searchSourceBuilder.from(1);
+        searchSourceBuilder.size(200);
+
         if(MyStringUtils.isNotEmpty(vo.getClassify()) || MyStringUtils.isNotEmpty(vo.getKeyWords())) {
             BoolQueryBuilder condition = QueryBuilders.boolQuery();
 
@@ -316,6 +333,8 @@ public class KnowledgeEsServiceImpl implements KnowledgeEsService {
 
 
         searchRequest.source(searchSourceBuilder);
+
+
         SearchResponse searchResponse = esClient.search(searchRequest,RequestOptions.DEFAULT);
         SearchHit[] result = searchResponse.getHits().getHits();
 

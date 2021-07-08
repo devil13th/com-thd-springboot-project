@@ -163,6 +163,21 @@ public class KnowledgeController  extends BasicController {
         }
     }
 
+    @RequestMapping("/createClassify/{classify}")
+    @ResponseBody
+    // url : http://127.0.0.1:2348/knowledge/createClassify
+    public Message createClassify(@PathVariable String classify) {
+        try {
+            this.knowledgeEsService.createClassify(classify);
+            return Message.success(CommonConstants.STATUS_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Message.error("-1",e.getMessage());
+        }
+    }
+
+
+
 
     @RequestMapping("/queryAllClassify")
     @ResponseBody
