@@ -261,8 +261,8 @@ public class KnowledgeEsServiceImpl implements KnowledgeEsService {
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
 
         // 分页信息
-        searchSourceBuilder.from(1);
-        searchSourceBuilder.size(200);
+        searchSourceBuilder.from(vo.getPage());
+        searchSourceBuilder.size(vo.getPageSize());
 
         if(MyStringUtils.isNotEmpty(vo.getClassify()) || MyStringUtils.isNotEmpty(vo.getKeyWords())) {
             BoolQueryBuilder condition = QueryBuilders.boolQuery();

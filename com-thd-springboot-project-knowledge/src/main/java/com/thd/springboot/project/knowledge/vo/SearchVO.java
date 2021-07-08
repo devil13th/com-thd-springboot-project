@@ -10,6 +10,8 @@ public class SearchVO extends DocVO {
     private String keyWords;
     private String classify;
     private String type;
+    private Integer page = 1;
+    private Integer pageSize = 10;
 
     @Override
     public String getClassify() {
@@ -36,5 +38,21 @@ public class SearchVO extends DocVO {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public Integer getPage() {
+        return page;
+    }
+
+    public void setPage(Integer page) {
+        this.page = page;
+    }
+
+    public Integer getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(Integer pageSize) {
+        this.pageSize = pageSize;
     }
 }
