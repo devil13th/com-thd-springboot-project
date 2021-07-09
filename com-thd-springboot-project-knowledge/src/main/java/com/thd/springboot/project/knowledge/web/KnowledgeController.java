@@ -10,6 +10,7 @@ import com.thd.springboot.project.knowledge.service.KnowledgeEsService;
 import com.thd.springboot.project.knowledge.service.KnowledgeService;
 import com.thd.springboot.project.knowledge.vo.ClassifyVO;
 import com.thd.springboot.project.knowledge.vo.DocVO;
+import com.thd.springboot.project.knowledge.vo.IndexVO;
 import com.thd.springboot.project.knowledge.vo.SearchVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -216,27 +217,21 @@ public class KnowledgeController  extends BasicController {
 
 
 
-    @RequestMapping("/indexThdTecFile")
+
+
+    @RequestMapping(value="/reIndexFolderByClassify",method = RequestMethod.POST)
     @ResponseBody
-    // url : http://127.0.0.1:2348/knowledge/indexThdTecFile
-    public Message indexThdTecFile() throws Exception{
-        String folderPath = "D:\\devil13th\\Thirdteendevil\\Thirdteendevil\\resource\\tec";
-        this.knowledgeEsService.indexThdTecFile(folderPath);
+    // url : http://127.0.0.1:2348/knowledge/reIndexFolderByClassify
+    public Message reIndexFolderByClassify(@RequestBody IndexVO indexVo) throws Exception{
+
+        this.knowledgeEsService.reIndexFolderByClassify(indexVo);
         return Message.success(CommonConstants.STATUS_SUCCESS);
     }
-    @RequestMapping("/reIndexThdTecFile")
-    @ResponseBody
-    // url : http://127.0.0.1:2348/knowledge/reIndexThdTecFile
-    public Message reIndexThdTecFile() throws Exception{
-        String folderPath = "D:\\devil13th\\Thirdteendevil\\Thirdteendevil\\resource\\tec";
-        this.knowledgeEsService.reIndexThdTecFile(folderPath);
-        return Message.success(CommonConstants.STATUS_SUCCESS);
-    }
-    @RequestMapping("/deleteIndexThdTecDoc")
+    @RequestMapping(value="/deleteDocByClassify/{classify}",method = RequestMethod.DELETE)
     @ResponseBody
     // url : http://127.0.0.1:2348/knowledge/deleteIndexThdTecDoc
-    public Message deleteIndexThdTecDoc() throws Exception{
-        this.knowledgeEsService.deleteIndexThdTecDoc();
+    public Message deleteDocByClassify(@PathVariable String classify) throws Exception{
+        this.knowledgeEsService.deleteDocByClassify(classify);
         return Message.success(CommonConstants.STATUS_SUCCESS);
     }
 

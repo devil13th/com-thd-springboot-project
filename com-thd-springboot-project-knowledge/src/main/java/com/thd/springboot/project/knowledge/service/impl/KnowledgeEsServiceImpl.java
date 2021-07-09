@@ -7,6 +7,7 @@ import com.thd.springboot.project.knowledge.constant.KnowledgeConstants;
 import com.thd.springboot.project.knowledge.service.KnowledgeEsService;
 import com.thd.springboot.project.knowledge.vo.ClassifyVO;
 import com.thd.springboot.project.knowledge.vo.DocVO;
+import com.thd.springboot.project.knowledge.vo.IndexVO;
 import com.thd.springboot.project.knowledge.vo.SearchVO;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
 import org.elasticsearch.action.bulk.BulkRequest;
@@ -385,8 +386,8 @@ public class KnowledgeEsServiceImpl implements KnowledgeEsService {
 
 
 
-    public void indexThdTecFile(String path) {
-        String folderPath = path;
+    public void indexFolerByClassify(IndexVO indexVo) {
+        String folderPath = indexVo.getPath();
         File folder = new File(folderPath);
         String[] folderList = folder.list();
         Stream.of(folderList).forEach( item -> {
@@ -397,25 +398,42 @@ public class KnowledgeEsServiceImpl implements KnowledgeEsService {
 //                        ||f.getName().toLowerCase().indexOf(".htm") != -1
 //                        ||f.getName().toLowerCase().indexOf(".md") != -1
 //                )
-                if(f.getName().toLowerCase().indexOf(".md") != -1){
-                    System.out.println(f.getAbsolutePath());
-                    if(f.length() <= 1 * 1024 * 1024) {
-                        String content = MyFileUtils.readFile(f.getAbsolutePath());
-                        DocVO doc = new DocVO();
-                        doc.setTitle(f.getName());
-                        doc.setContent(content);
-                        doc.setFilePath(f.getAbsolutePath());
 
-                        doc.setClassify("THD TEC");
-                        try {
-                           this.index(doc);
-                        } catch (Exception e) {
-                            e.printStackTrace();
+                boolean beIndex = false;
+
+                String fileName = f.getName();
+                if(MyStringUtils.isNotEmpty(fileName) && (f.getName().indexOf(".") != -1)) {
+                    System.out.println(fileName + "-------");
+                    String fileSuffix = f.getName().substring(f.getName().lastIndexOf("."), f.getName().length());
+
+
+                    if (MyStringUtils.isNotEmpty(fileSuffix)) {
+                        if (indexVo.getSuffix().toLowerCase().indexOf(fileSuffix.toLowerCase()) != -1) {
+                            beIndex = true;
+                        }
+                    }
+                    if (beIndex) {
+                        System.out.println(f.getAbsolutePath());
+                        if (f.length() <= 1 * 1024 * 1024) {
+                            String content = MyFileUtils.readFile(f.getAbsolutePath());
+                            DocVO doc = new DocVO();
+                            doc.setTitle(f.getName());
+                            doc.setContent(content);
+                            doc.setFilePath(f.getAbsolutePath());
+                            doc.setClassify(indexVo.getClassify());
+                            try {
+                                this.index(doc);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
                         }
                     }
                 }
             }else{
-                this.indexThdTecFile(f.getAbsolutePath());
+                IndexVO subIndexVo = new IndexVO();
+                BeanUtils.copyProperties(indexVo,subIndexVo);
+                subIndexVo.setPath(f.getAbsolutePath());
+                this.indexFolerByClassify(subIndexVo);
             }
         });
     };
@@ -423,21 +441,22 @@ public class KnowledgeEsServiceImpl implements KnowledgeEsService {
 
     /**
      * 全部重新索引thd tec文章
-     * @param path
      */
-    public void reIndexThdTecFile(String path) throws Exception{
+    public void reIndexFolderByClassify(IndexVO indexVo) throws Exception{
         // 先清除所有THD TEC分类的文章
-        this.deleteIndexThdTecDoc();
+        if(indexVo.getReIndex()) {
+            this.deleteDocByClassify(indexVo.getClassify());
+        }
         // 重新索引
-        this.indexThdTecFile(path);
+        this.indexFolerByClassify(indexVo);
     };
 
     /**
      * 删除thd tec类文章 - 同步
      */
-    public void deleteIndexThdTecDoc() throws Exception{
+    public void deleteDocByClassify(String classify) throws Exception{
         DeleteByQueryRequest deleteByQueryRequest = new DeleteByQueryRequest(KnowledgeConstants.MODULE_NAME);
-        deleteByQueryRequest.setQuery(new TermQueryBuilder("classify", "THD TEC"));
+        deleteByQueryRequest.setQuery(new TermQueryBuilder("classify", classify));
         deleteByQueryRequest.setSlices(5); // 开启多少进程执行删除任务
         esClient.deleteByQuery(deleteByQueryRequest,RequestOptions.DEFAULT);
     };

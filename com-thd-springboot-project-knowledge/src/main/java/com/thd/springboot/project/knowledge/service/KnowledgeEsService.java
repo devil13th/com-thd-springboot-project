@@ -2,6 +2,7 @@ package com.thd.springboot.project.knowledge.service;
 
 import com.thd.springboot.project.knowledge.vo.ClassifyVO;
 import com.thd.springboot.project.knowledge.vo.DocVO;
+import com.thd.springboot.project.knowledge.vo.IndexVO;
 import com.thd.springboot.project.knowledge.vo.SearchVO;
 
 import java.util.List;
@@ -78,21 +79,19 @@ public interface KnowledgeEsService {
 
     /**
      * 索引thd tec文章
-     * @param path
      */
-    public void indexThdTecFile(String path) ;
+    public void indexFolerByClassify(IndexVO indexVo);
 
 
     /**
      * 全部重新索引thd tec文章
-     * @param path
      */
-    public void reIndexThdTecFile(String path) throws Exception;
+    public void reIndexFolderByClassify(IndexVO indexVo) throws Exception;
 
     /**
      * 删除thd tec类文章
      */
-    public void deleteIndexThdTecDoc() throws Exception;
+    public void deleteDocByClassify(String classify) throws Exception;
 
     /**
      * 根据id查询文档
